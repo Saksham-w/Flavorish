@@ -5,14 +5,18 @@ import styles from "./authLinks.module.css";
 
 function AuthLinks() {
   const [open, setOpen] = useState(false);
-  const status = "notauthenticated";
+  const status = "authenticated";
   return (
     <>
       {status === "notauthenticated" ? (
-        <Link href="/login" className={styles.link}>Login</Link>
+        <Link href="/login" className={styles.link}>
+          Login
+        </Link>
       ) : (
         <>
-          <Link href="/write" className={styles.link}>Write</Link>
+          <Link href="/write" className={styles.link}>
+            Write
+          </Link>
           <span className={styles.link}>Logout</span>
         </>
       )}

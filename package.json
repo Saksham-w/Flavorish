@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tiptap/extension-placeholder": "^3.10.1",
+    "@tiptap/pm": "^3.10.1",
+    "@tiptap/react": "^3.10.1",
+    "@tiptap/starter-kit": "^3.10.1",
     "eslint": "8.48.0",
     "eslint-config-next": "15.5.4",
     "next": "15.5.4",

@@ -1,0 +1,174 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  margin-bottom: 50px;
+  padding: 10px 20px;
+  margin-left: 50px;
+  width: max-content;
+}
+
+.editor {
+  display: flex;
+  gap: 20px;
+  height: 700px;
+  position: relative;
+}
+
+.button,
+.addButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid var(--textColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.addButton {
+  border-color: #1a8917;
+}
+
+.add {
+  display: flex;
+  gap: 20px;
+  background-color: var(--bg);
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  left: 50px;
+}
+
+.input {
+  padding: 50px;
+  font-size: 64px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--textColor);
+}
+
+.input::placeholder {
+  color: #b3b3b1;
+}
+
+/* TipTap Editor Styles */
+.textArea {
+  width: 100%;
+  min-height: 500px;
+  outline: none;
+}
+
+.textArea :global(.ProseMirror) {
+  outline: none;
+  padding: 20px;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--textColor);
+  min-height: 500px;
+}
+
+.textArea :global(.ProseMirror:focus) {
+  outline: none;
+}
+
+/* Placeholder styling */
+.textArea :global(.ProseMirror p.is-editor-empty:first-child::before) {
+  content: attr(data-placeholder);
+  float: left;
+  color: #b3b3b1;
+  pointer-events: none;
+  height: 0;
+}
+
+/* Paragraph spacing */
+.textArea :global(.ProseMirror p) {
+  margin: 1rem 0;
+}
+
+.textArea :global(.ProseMirror p:first-child) {
+  margin-top: 0;
+}
+
+/* Headings */
+.textArea :global(.ProseMirror h1) {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 1.5rem 0 1rem;
+}
+
+.textArea :global(.ProseMirror h2) {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1.3rem 0 0.8rem;
+}
+
+.textArea :global(.ProseMirror h3) {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 1.2rem 0 0.6rem;
+}
+
+/* Lists */
+.textArea :global(.ProseMirror ul),
+.textArea :global(.ProseMirror ol) {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.textArea :global(.ProseMirror li) {
+  margin: 0.5rem 0;
+}
+
+/* Code blocks */
+.textArea :global(.ProseMirror pre) {
+  background: #f4f4f4;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.textArea :global(.ProseMirror code) {
+  background: #f4f4f4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+/* Blockquotes */
+.textArea :global(.ProseMirror blockquote) {
+  border-left: 3px solid #ccc;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #666;
+  font-style: italic;
+}
+
+/* Bold and Italic */
+.textArea :global(.ProseMirror strong) {
+  font-weight: bold;
+}
+
+.textArea :global(.ProseMirror em) {
+  font-style: italic;
+}
+
+.publish {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #1a8917;
+  color: white;
+  cursor: pointer;
+  border-radius: 20px;
+}
