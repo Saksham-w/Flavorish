@@ -6,10 +6,26 @@ import { useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const WritePage = () => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
+
+  const { data, status } = useSession();
+
+  console.log(data, status);
+
+  const router = useRouter();
+
+  if (status === "authenticated") {
+    router.push("/");
+  }
+
+  if (status === "loading") {
+    return <div className={styles.container}>Loading...</div>;
+  }
 
   const editor = useEditor({
     extensions: [
