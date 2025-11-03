@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import styles from "./writePage.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -19,14 +19,6 @@ const WritePage = () => {
 
   const router = useRouter();
 
-  if (status === "authenticated") {
-    router.push("/");
-  }
-
-  if (status === "loading") {
-    return <div className={styles.container}>Loading...</div>;
-  }
-
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -42,6 +34,17 @@ const WritePage = () => {
       },
     },
   });
+
+  // Redirect if unauthenticated (must be in useEffect)
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <div className={styles.container}>Loading...</div>;
+  }
 
   const handlePublish = () => {
     if (editor) {
