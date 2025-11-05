@@ -4,6 +4,7 @@ import { adapter } from "next/dist/server/web/adapter";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { Prisma } from "@prisma/client";
 import prisma from "./connect";
+import { getServerSession } from "next-auth";
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
@@ -19,3 +20,5 @@ export const authOptions = {
     }),
   ],
 };
+
+export const getAuthSession = () => getServerSession(authOptions);
