@@ -30,53 +30,85 @@ const Comments = ({ postSlug }) => {
   const [desc, setDesc] = useState("");
 
   const handleSubmit = async () => {
+    if (!desc.trim()) return;
+
     await fetch("/api/comments", {
       method: "POST",
       body: JSON.stringify({ desc, postSlug }),
     });
-    mutate(); // mutate should be called from useSWR, not useState
+    setDesc(""); // Clear the textarea
+    mutate(); // Refresh comments
   };
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Comments</h1>
+      <h1 className={styles.title}>
+        Comments <span className={styles.count}>({data?.length || 0})</span>
+      </h1>
+
       {status === "authenticated" ? (
-        <div className={styles.write}>
-          <textarea
-            placeholder="write a comment..."
-            className={styles.input}
-            onChange={(e) => setDesc(e.target.value)}
-          />
+        <div className={styles.writeSection}>
+          <div className={styles.write}>
+            <textarea
+              placeholder="Share your thoughts..."
+              className={styles.input}
+              onChange={(e) => setDesc(e.target.value)}
+              value={desc}
+              rows={4}
+            />
+          </div>
           <button className={styles.button} onClick={handleSubmit}>
-            Send
+            Post Comment
           </button>
         </div>
       ) : (
-        <Link href="/login">Login to write a comment</Link>
+        <div className={styles.loginPrompt}>
+          <p>Join the conversation!</p>
+          <Link href="/login" className={styles.loginLink}>
+            Sign in to comment
+          </Link>
+        </div>
       )}
+
       <div className={styles.comments}>
-        {isLoading
-          ? "Loading..."
-          : data?.map((item) => (
-              <div className={styles.comment} key={item._id}>
+        {isLoading ? (
+          <div className={styles.loading}>Loading comments...</div>
+        ) : data?.length === 0 ? (
+          <div className={styles.noComments}>
+            <p>No comments yet. Be the first to share your thoughts!</p>
+          </div>
+        ) : (
+          data?.map((item) => (
+            <div className={styles.comment} key={item._id}>
+              <div className={styles.commentHeader}>
                 <div className={styles.user}>
                   {item?.user?.image && (
                     <Image
                       src={item.user.image}
                       alt=""
-                      width={50}
-                      height={50}
-                      className={styles.image}
+                      width={40}
+                      height={40}
+                      className={styles.avatar}
                     />
                   )}
                   <div className={styles.userInfo}>
                     <span className={styles.username}>{item.user.name}</span>
-                    <span className={styles.date}>{item.createdAt}</span>
+                    <span className={styles.date}>
+                      {new Date(item.createdAt).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                    </span>
                   </div>
                 </div>
+              </div>
+              <div className={styles.commentBody}>
                 <p className={styles.desc}>{item.desc}</p>
               </div>
-            ))}
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

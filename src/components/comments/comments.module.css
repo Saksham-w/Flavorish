@@ -1,70 +1,236 @@
 .container {
-  margin-top: 50px;
+  margin-top: 60px;
+  padding: 40px 0;
 }
 
 .title {
-  color: var(--softTextColor);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--textColor);
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.count {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--softTextColor);
+}
+
+/* Write Section Styles */
+.writeSection {
+  background: rgba(128, 128, 128, 0.12);
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 40px;
+  transition: all 0.3s ease;
+}
+
+.writeSection:focus-within {
+  border-color: rgba(26, 137, 23, 0.4);
+  box-shadow: 0 0 0 3px rgba(26, 137, 23, 0.1);
 }
 
 .write {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
+  margin-bottom: 15px;
 }
 
 .input {
-  padding: 20px;
   width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--bg);
+  color: var(--textColor);
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  background-color: var(--bg);
+}
+
+.input::placeholder {
+  color: var(--softTextColor);
 }
 
 .button {
-  padding: 16px 20px;
-  background-color: teal;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #1a8917 0%, #15a012 100%);
   color: white;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(26, 137, 23, 0.2);
 }
 
+.button:hover {
+  background: linear-gradient(135deg, #15a012 0%, #128f0e 100%);
+  box-shadow: 0 4px 12px rgba(26, 137, 23, 0.3);
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+/* Login Prompt */
+.loginPrompt {
+  background: var(--softBg);
+  border: 2px dashed var(--softTextColor);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.loginPrompt p {
+  font-size: 18px;
+  color: var(--textColor);
+  margin-bottom: 15px;
+}
+
+.loginLink {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: var(--textColor);
+  color: var(--bg);
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.loginLink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Comments List */
 .comments {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
+.loading,
+.noComments {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--softTextColor);
+  font-size: 18px;
+  background: var(--softBg);
+  border-radius: 12px;
+}
+
+.noComments p {
+  font-size: 16px;
+  color: var(--softTextColor);
+}
+
+/* Individual Comment Styles */
 .comment {
-  margin-bottom: 50px;
+  background: rgba(128, 128, 128, 0.12);
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+}
+
+.comment:hover {
+  background: rgba(128, 128, 128, 0.18);
+  border-color: rgba(128, 128, 128, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.commentHeader {
+  margin-bottom: 12px;
 }
 
 .user {
   display: flex;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 10px;
 }
 
-.image {
+.avatar {
   border-radius: 50%;
   object-fit: cover;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  width: 32px;
+  height: 32px;
 }
 
 .userInfo {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  color: var(--softTextColor);
+  gap: 2px;
 }
 
 .username {
   font-weight: 500;
+  font-size: 13px;
+  color: var(--softTextColor);
 }
 
 .date {
-  font-size: 14px;
+  font-size: 11px;
+  color: var(--softTextColor);
+  opacity: 0.7;
+}
+
+.commentBody {
+  padding-left: 0;
+  margin-top: 8px;
 }
 
 .desc {
-  font-size: 18px;
-  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--textColor);
+  margin: 0;
+  word-wrap: break-word;
+  font-weight: 400;
+}
+
+/* Responsive */
+@media screen and (max-width: 640px) {
+  .container {
+    padding: 20px 0;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .count {
+    font-size: 16px;
+  }
+
+  .writeSection,
+  .loginPrompt {
+    padding: 15px;
+  }
+
+  .comment {
+    padding: 15px;
+  }
+
+  .commentBody {
+    padding-left: 0;
+    margin-top: 10px;
+  }
+
+  .desc {
+    font-size: 14px;
+  }
 }

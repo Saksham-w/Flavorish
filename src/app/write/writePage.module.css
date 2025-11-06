@@ -59,13 +59,67 @@
   gap: 20px;
 }
 
-.editor {
+.editorWrapper {
   margin: 20px 50px;
-  min-height: 400px;
   border: 1px solid var(--softTextColor);
   border-radius: 8px;
-  padding: 20px;
+  overflow: hidden;
   background-color: var(--bg);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 12px;
+  border-bottom: 1px solid var(--softTextColor);
+  background-color: var(--softBg);
+}
+
+.toolbar button {
+  padding: 6px 12px;
+  border: 1px solid var(--softTextColor);
+  border-radius: 4px;
+  background-color: var(--bg);
+  color: var(--textColor);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+}
+
+.toolbar button:hover:not(:disabled) {
+  background-color: var(--softTextColor);
+  border-color: var(--textColor);
+}
+
+.toolbar button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.toolbar button.isActive {
+  background-color: #1a8917;
+  color: white;
+  border-color: #1a8917;
+}
+
+.divider {
+  width: 1px;
+  background-color: var(--softTextColor);
+  margin: 0 8px;
+}
+
+.editor {
+  min-height: 400px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  margin: 0;
 }
 
 .button,
@@ -79,6 +133,35 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.button {
+  width: auto;
+  padding: 8px 16px;
+  border-radius: 20px;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--softBg);
+  border-color: #1a8917;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--softTextColor);
+}
+
+.button:disabled .buttonText {
+  color: var(--softTextColor);
+}
+
+.buttonText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--textColor);
 }
 
 .addButton {
@@ -112,6 +195,22 @@
 
 .input::placeholder {
   color: #b3b3b1;
+}
+
+.subtitle {
+  padding: 20px 50px;
+  font-size: 28px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--softTextColor);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.subtitle::placeholder {
+  color: #b3b3b1;
+  font-style: italic;
 }
 
 /* TipTap Editor Styles */

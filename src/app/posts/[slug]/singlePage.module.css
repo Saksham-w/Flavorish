@@ -1,22 +1,50 @@
 .infoContainer {
   display: flex;
-  align-items: center;
-  gap: 50px;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
 }
 
 .textContainer {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
 }
 
 .title {
   font-size: 64px;
-  margin-bottom: 50px;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 28px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--softTextColor);
+  margin-bottom: 0;
+  line-height: 1.4;
 }
 
 .user {
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-top: 10px;
 }
 
 .userImageContainer {
@@ -32,24 +60,26 @@
 
 .userTextContainer {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
   color: var(--softTextColor);
 }
 
 .username {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 
-.imageContainer {
-  flex: 1;
-  height: 350px;
-  position: relative;
+.date {
+  font-size: 16px;
+  color: var(--softTextColor);
 }
 
-.image {
-  object-fit: cover;
+.date::before {
+  content: "•";
+  margin: 0 8px;
+  color: var(--softTextColor);
 }
 
 .content {
@@ -72,20 +102,43 @@
   .title {
     font-size: 54px;
   }
+  .subtitle {
+    font-size: 24px;
+  }
+  .imageContainer {
+    height: 450px;
+  }
 }
 @media screen and (max-width: 1280px) {
   .title {
     font-size: 48px;
   }
+  .subtitle {
+    font-size: 22px;
+  }
+  .imageContainer {
+    height: 400px;
+  }
 }
 @media screen and (max-width: 1024px) {
+  .title {
+    font-size: 42px;
+  }
   .imageContainer {
-    display: none;
+    height: 350px;
   }
 }
 @media screen and (max-width: 640px) {
   .title {
     font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .imageContainer {
+    height: 250px;
   }
 
   .description p {

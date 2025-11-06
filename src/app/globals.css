@@ -42,7 +42,7 @@ a{
 }
 
 .wrapper{
-    max-width: 1536px;
+    max-width: 1240px;
     margin-left: auto;
     margin-right: auto;
     /* background-color: rebeccapurple; */
@@ -52,7 +52,7 @@ a{
 
 @media screen and (max-width:1536px) {
     .wrapper{
-        max-width: 1366px;
+        max-width: 1240px;
     }
     
 }
@@ -74,12 +74,16 @@ a{
 @media screen and (max-width: 768px) {
     .wrapper{
          max-width: 640px;
+         padding-left: 20px;
+         padding-right: 20px;
     }
 }
 
 @media screen and (max-width: 640px) {
     .wrapper{
-         max-width: 475px;
+         max-width: 100%;
+         padding-left: 20px;
+         padding-right: 20px;
     }
 }
  

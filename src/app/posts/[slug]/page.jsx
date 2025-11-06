@@ -20,8 +20,19 @@ const SinglePage = async ({ params }) => {
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
+        {/* Featured Image at the top */}
+        {data?.img && (
+          <div className={styles.imageContainer}>
+            <Image src={data?.img} alt="" fill className={styles.image} />
+          </div>
+        )}
+
+        {/* Title, Subtitle, and User Info */}
         <div className={styles.textContainer}>
           <h1 className={styles.title}>{data?.title}</h1>
+          {data?.subtitle && (
+            <h2 className={styles.subtitle}>{data.subtitle}</h2>
+          )}
           <div className={styles.user}>
             {data?.user?.image && (
               <div className={styles.userImageContainer}>
@@ -35,15 +46,16 @@ const SinglePage = async ({ params }) => {
             )}
             <div className={styles.userTextContainer}>
               <span className={styles.username}>{data?.user?.name}</span>
-              <span className={styles.date}>01.01.2024</span>
+              <span className={styles.date}>
+                {new Date(data?.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
             </div>
           </div>
         </div>
-        {data?.img && (
-          <div className={styles.imageContainer}>
-            <Image src={data?.img} alt="" fill className={styles.image} />
-          </div>
-        )}
       </div>
       <div className={styles.content}>
         <div className={styles.post}>
@@ -57,7 +69,7 @@ const SinglePage = async ({ params }) => {
             <Comments postSlug={slug} />
           </div>
         </div>
-        <Menu />
+        {/* <Menu /> */}
       </div>
     </div>
   );

@@ -14,11 +14,13 @@ const WritePage = () => {
   const [file, setFile] = useState(null);
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
   const [media, setMedia] = useState("");
   const [uploading, setUploading] = useState(false);
   const [catSlug, setCatSlug] = useState("");
   const [publishing, setPublishing] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [editorState, setEditorState] = useState(0);
 
   const { data, status } = useSession();
 
@@ -39,6 +41,14 @@ const WritePage = () => {
       attributes: {
         class: styles.textArea,
       },
+    },
+    onUpdate: () => {
+      // Force re-render to update toolbar button states
+      setEditorState((prev) => prev + 1);
+    },
+    onSelectionUpdate: () => {
+      // Force re-render when selection changes
+      setEditorState((prev) => prev + 1);
     },
   });
 
@@ -118,18 +128,25 @@ const WritePage = () => {
     try {
       const content = editor.getHTML();
 
+      const postData = {
+        title,
+        desc: content,
+        img: media,
+        slug: title.toLowerCase().replace(/\s+/g, "-"),
+        catSlug: catSlug || "general",
+      };
+
+      // Only add subtitle if it has a value
+      if (subtitle && subtitle.trim()) {
+        postData.subtitle = subtitle;
+      }
+
       const response = await fetch("/api/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          title,
-          desc: content,
-          img: media,
-          slug: title.toLowerCase().replace(/\s+/g, "-"),
-          catSlug: catSlug || "general",
-        }),
+        body: JSON.stringify(postData),
       });
 
       if (!response.ok) {
@@ -157,6 +174,14 @@ const WritePage = () => {
         onChange={(e) => setTitle(e.target.value)}
       />
 
+      <input
+        type="text"
+        placeholder="Subtitle"
+        className={styles.subtitle}
+        value={subtitle}
+        onChange={(e) => setSubtitle(e.target.value)}
+      />
+
       <div className={styles.categoryWrapper}>
         <label htmlFor="category" className={styles.label}>
           Select Category
@@ -178,11 +203,21 @@ const WritePage = () => {
 
       {/* Image Upload Section */}
       <div className={styles.imageSection}>
-        <button className={styles.button} onClick={() => setOpen(!open)}>
+        <button
+          className={styles.button}
+          onClick={() => setOpen(!open)}
+          disabled={media}
+          title={
+            media
+              ? "You have already added an image"
+              : "Add an image to your post"
+          }
+        >
           <Image src="/plus.png" alt="Add" width={16} height={16} />
+          <span className={styles.buttonText}>Add Image</span>
         </button>
 
-        {open && (
+        {open && !media && (
           <div className={styles.add}>
             <input
               type="file"
@@ -204,7 +239,7 @@ const WritePage = () => {
               </label>
             </button>
 
-            <button className={styles.addButton}>
+            {/* <button className={styles.addButton}>
               <Image
                 src="/external.png"
                 alt="Insert File"
@@ -219,7 +254,7 @@ const WritePage = () => {
                 width={16}
                 height={16}
               />
-            </button>
+            </button> */}
           </div>
         )}
 
@@ -232,8 +267,144 @@ const WritePage = () => {
       </div>
 
       {/* Blog Content Editor */}
-      <div className={styles.editor}>
-        <EditorContent editor={editor} />
+      <div className={styles.editorWrapper}>
+        {/* Formatting Toolbar */}
+        {editor && (
+          <div className={styles.toolbar}>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().toggleBold().run();
+              }}
+              className={editor.isActive("bold") ? styles.isActive : ""}
+              type="button"
+            >
+              <strong>B</strong>
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().toggleItalic().run();
+              }}
+              className={editor.isActive("italic") ? styles.isActive : ""}
+              type="button"
+            >
+              <em>I</em>
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().toggleStrike().run();
+              }}
+              className={editor.isActive("strike") ? styles.isActive : ""}
+              type="button"
+            >
+              <s>S</s>
+            </button>
+            <span className={styles.divider}></span>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().toggleHeading({ level: 1 }).run();
+              }}
+              className={
+                editor.isActive("heading", { level: 1 }) ? styles.isActive : ""
+              }
+              type="button"
+            >
+              H1
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().toggleHeading({ level: 2 }).run();
+              }}
+              className={
+                editor.isActive("heading", { level: 2 }) ? styles.isActive : ""
+              }
+              type="button"
+            >
+              H2
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().toggleHeading({ level: 3 }).run();
+              }}
+              className={
+                editor.isActive("heading", { level: 3 }) ? styles.isActive : ""
+              }
+              type="button"
+            >
+              H3
+            </button>
+            <span className={styles.divider}></span>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().toggleBulletList().run();
+              }}
+              className={editor.isActive("bulletList") ? styles.isActive : ""}
+              type="button"
+            >
+              • List
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().toggleOrderedList().run();
+              }}
+              className={editor.isActive("orderedList") ? styles.isActive : ""}
+              type="button"
+            >
+              1. List
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().toggleBlockquote().run();
+              }}
+              className={editor.isActive("blockquote") ? styles.isActive : ""}
+              type="button"
+            >
+              " Quote
+            </button>
+            <span className={styles.divider}></span>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().setHorizontalRule().run();
+              }}
+              type="button"
+            >
+              ―
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().undo().run();
+              }}
+              disabled={!editor.can().undo()}
+              type="button"
+            >
+              ↶ Undo
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().redo().run();
+              }}
+              disabled={!editor.can().redo()}
+              type="button"
+            >
+              ↷ Redo
+            </button>
+          </div>
+        )}
+
+        <div className={styles.editor}>
+          <EditorContent editor={editor} />
+        </div>
       </div>
 
       <button
