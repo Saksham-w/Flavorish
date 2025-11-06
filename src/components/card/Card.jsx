@@ -4,11 +4,24 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Card({ item }) {
+  // Strip HTML tags from description for preview
+  const stripHtml = (html) => {
+    if (typeof window !== "undefined") {
+      const tmp = document.createElement("div");
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || "";
+    }
+    // Server-side: simple regex to remove HTML tags
+    return html.replace(/<[^>]*>/g, "");
+  };
+
+  const plainDesc = stripHtml(item.desc || "");
+
   return (
     <div className={styles.container}>
       {item.img && (
         <div className={styles.imageContainer}>
-          <Image src={item.image} alt="" fill className={styles.image} />
+          <Image src={item.img} alt="" fill className={styles.image} />
         </div>
       )}
       <div className={styles.textContainer}>
@@ -21,7 +34,7 @@ export default function Card({ item }) {
         <Link href={`/posts/${item.slug}`}>
           <h1>{item.title}</h1>
         </Link>
-        <p className={styles.desc}>{item.desc.substring(0, 60)}</p>
+        <p className={styles.desc}>{item.subtitle}...</p>
         <Link href={`/posts/${item.slug}`} className={styles.link}>
           Read More
         </Link>

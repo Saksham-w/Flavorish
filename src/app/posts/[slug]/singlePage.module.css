@@ -1,3 +1,9 @@
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .infoContainer {
   display: flex;
   flex-direction: column;
@@ -109,7 +115,12 @@
     height: 450px;
   }
 }
+
 @media screen and (max-width: 1280px) {
+  .container {
+    max-width: 1024px;
+    padding: 0 40px;
+  }
   .title {
     font-size: 48px;
   }
@@ -120,7 +131,12 @@
     height: 400px;
   }
 }
+
 @media screen and (max-width: 1024px) {
+  .container {
+    max-width: 768px;
+    padding: 0 30px;
+  }
   .title {
     font-size: 42px;
   }
@@ -128,7 +144,23 @@
     height: 350px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 640px;
+    padding: 0 20px;
+  }
+  .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
 @media screen and (max-width: 640px) {
+  .container {
+    max-width: 100%;
+    padding: 0 16px;
+  }
   .title {
     font-size: 36px;
   }
@@ -143,5 +175,22 @@
 
   .description p {
     font-size: 18px;
+  }
+
+  .user {
+    gap: 12px;
+  }
+
+  .userImageContainer {
+    width: 40px;
+    height: 40px;
+  }
+
+  .username {
+    font-size: 16px;
+  }
+
+  .date {
+    font-size: 14px;
   }
 }

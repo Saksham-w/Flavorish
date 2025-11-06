@@ -5,7 +5,12 @@ export const GET = async (req, { params }) => {
   const { slug } = params;
 
   try {
-    const post = await prisma.post.findUnique({
+    const post = await prisma.post.update({
+      data: {
+        views: {
+          increment: 1,
+        },
+      },
       where: { slug: slug },
       include: { user: true },
     });
