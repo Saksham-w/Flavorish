@@ -3,9 +3,9 @@ import styles from "./card.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Card({ key, item }) {
+export default function Card({ item }) {
   return (
-    <div className={styles.container} key={key}>
+    <div className={styles.container}>
       {item.img && (
         <div className={styles.imageContainer}>
           <Image src={item.image} alt="" fill className={styles.image} />

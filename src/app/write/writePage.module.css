@@ -4,18 +4,68 @@
   flex-direction: column;
 }
 
+.categoryWrapper {
+  margin: 0 50px 30px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--textColor);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .select {
-  margin-bottom: 50px;
-  padding: 10px 20px;
-  margin-left: 50px;
-  width: max-content;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid var(--softTextColor);
+  border-radius: 8px;
+  background-color: var(--bg);
+  color: var(--textColor);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 45px;
+}
+
+.select:hover {
+  border-color: var(--textColor);
+}
+
+.select:focus {
+  border-color: #1a8917;
+  box-shadow: 0 0 0 3px rgba(26, 137, 23, 0.1);
+}
+
+.select option {
+  background-color: var(--bg);
+  color: var(--textColor);
+  padding: 10px;
+}
+
+.imageSection {
+  margin: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .editor {
-  display: flex;
-  gap: 20px;
-  height: 700px;
-  position: relative;
+  margin: 20px 50px;
+  min-height: 400px;
+  border: 1px solid var(--softTextColor);
+  border-radius: 8px;
+  padding: 20px;
+  background-color: var(--bg);
 }
 
 .button,
@@ -39,10 +89,16 @@
   display: flex;
   gap: 20px;
   background-color: var(--bg);
-  position: absolute;
   z-index: 999;
-  width: 100%;
-  left: 50px;
+  padding: 10px 0;
+}
+
+.imagePreview {
+  margin-top: 10px;
+  border: 1px solid var(--softTextColor);
+  border-radius: 8px;
+  padding: 10px;
+  display: inline-block;
 }
 
 .input {
@@ -61,21 +117,23 @@
 /* TipTap Editor Styles */
 .textArea {
   width: 100%;
-  min-height: 500px;
+  min-height: 400px;
   outline: none;
 }
 
 .textArea :global(.ProseMirror) {
   outline: none;
   padding: 20px;
-  font-size: 20px;
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.8;
   color: var(--textColor);
-  min-height: 500px;
+  min-height: 400px;
+  background-color: var(--bg);
 }
 
 .textArea :global(.ProseMirror:focus) {
   outline: none;
+  border: none;
 }
 
 /* Placeholder styling */
@@ -85,6 +143,7 @@
   color: #b3b3b1;
   pointer-events: none;
   height: 0;
+  font-size: 18px;
 }
 
 /* Paragraph spacing */
