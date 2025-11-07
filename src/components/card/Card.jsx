@@ -4,41 +4,57 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Card({ item }) {
-  // Strip HTML tags from description for preview
-  const stripHtml = (html) => {
-    if (typeof window !== "undefined") {
-      const tmp = document.createElement("div");
-      tmp.innerHTML = html;
-      return tmp.textContent || tmp.innerText || "";
-    }
-    // Server-side: simple regex to remove HTML tags
-    return html.replace(/<[^>]*>/g, "");
+  // Capitalize first letter of category
+  const capitalizeCategory = (category) => {
+    if (!category) return "";
+    return category.charAt(0).toUpperCase() + category.slice(1);
   };
 
-  const plainDesc = stripHtml(item.desc || "");
-
   return (
-    <div className={styles.container}>
+    <Link href={`/posts/${item.slug}`} className={styles.container}>
+      {/* Image at the top */}
       {item.img && (
         <div className={styles.imageContainer}>
-          <Image src={item.img} alt="" fill className={styles.image} />
+          {/* Category tag overlay */}
+          {item.catSlug && (
+            <div className={styles.categoryTag}>
+              {capitalizeCategory(item.catSlug)}
+            </div>
+          )}
+          <Image
+            src={item.img}
+            alt={item.title}
+            fill
+            className={styles.image}
+          />
         </div>
       )}
-      <div className={styles.textContainer}>
-        <div className={styles.detail}>
-          <span className={styles.date}>
-            {item.createdAt.substring(0, 10)} -{" "}
-          </span>
-          <span className={styles.category}>{item.catSlug}</span>
+
+      {/* Content below image */}
+      <div className={styles.content}>
+        {/* Title */}
+        <h2 className={styles.title}>{item.title}</h2>
+
+        {/* Username and Views row */}
+        <div className={styles.footer}>
+          <div className={styles.author}>
+            {item.user?.image && (
+              <div className={styles.avatarContainer}>
+                <Image
+                  src={item.user.image}
+                  alt={item.user.name}
+                  fill
+                  className={styles.avatar}
+                />
+              </div>
+            )}
+            <span className={styles.username}>{item.user?.name}</span>
+          </div>
+          <div className={styles.views}>
+            <span>{item.views || 0} views</span>
+          </div>
         </div>
-        <Link href={`/posts/${item.slug}`}>
-          <h1>{item.title}</h1>
-        </Link>
-        <p className={styles.desc}>{item.subtitle}...</p>
-        <Link href={`/posts/${item.slug}`} className={styles.link}>
-          Read More
-        </Link>
       </div>
-    </div>
+    </Link>
   );
 }

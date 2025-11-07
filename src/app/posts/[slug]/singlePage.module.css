@@ -104,6 +104,29 @@
   margin-bottom: 20px;
 }
 
+.categoriesSection {
+  margin: 60px 0;
+  padding: 40px 0;
+  border-top: 1px solid rgba(128, 128, 128, 0.15);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.categoriesSubtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--softTextColor);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.categoriesTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--textColor);
+  margin-bottom: 24px;
+}
+
 @media screen and (max-width: 1536px) {
   .title {
     font-size: 54px;
@@ -175,6 +198,20 @@
 
   .description p {
     font-size: 18px;
+  }
+
+  .categoriesSection {
+    margin: 40px 0;
+    padding: 30px 0;
+  }
+
+  .categoriesSubtitle {
+    font-size: 14px;
+  }
+
+  .categoriesTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 
   .user {

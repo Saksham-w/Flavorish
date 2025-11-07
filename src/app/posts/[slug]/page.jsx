@@ -3,6 +3,7 @@ import styles from "./singlePage.module.css";
 import Image from "next/image";
 import Comments from "@/components/comments/Comments";
 import parse from "html-react-parser";
+import MenuCategories from "@/components/menuCategories/MenuCategories";
 
 const getData = async (slug) => {
   const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
@@ -61,6 +62,14 @@ const SinglePage = async ({ params }) => {
       <div className={styles.content}>
         <div className={styles.post}>
           <div className={styles.description}>{parse(data?.desc || "")}</div>
+
+          {/* Categories section between post and comments */}
+          <div className={styles.categoriesSection}>
+            <h2 className={styles.categoriesSubtitle}>Discover by topic</h2>
+            <h1 className={styles.categoriesTitle}>Categories</h1>
+            <MenuCategories />
+          </div>
+
           <div className={styles.comment}>
             <Comments postSlug={slug} />
           </div>

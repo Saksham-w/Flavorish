@@ -1,7 +1,44 @@
 .container {
   flex: 5;
+  width: 100%;
 }
 
 .title {
-  margin: 50px 0px;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: var(--textColor);
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+/* Tablet - 2 columns */
+@media screen and (max-width: 1024px) {
+  .posts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+}
+
+/* Mobile - 1 column */
+@media screen and (max-width: 640px) {
+  .posts {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
 }

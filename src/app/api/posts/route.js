@@ -6,16 +6,39 @@ export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
   const page = parseInt(searchParams.get("page")) || 1;
   const cat = searchParams.get("cat");
-  const POST_PER_PAGE = 2;
+  const popular = searchParams.get("popular");
+  const POST_PER_PAGE = 9;
 
   const where = cat ? { catSlug: cat } : {};
 
   try {
+    // If popular flag is set, return posts ordered by views
+    if (popular === "true") {
+      const posts = await prisma.post.findMany({
+        take: 3,
+        where,
+        include: {
+          user: true,
+        },
+        orderBy: {
+          views: "desc",
+        },
+      });
+      return NextResponse.json({ posts, count: posts.length }, { status: 200 });
+    }
+
+    // Otherwise, return paginated posts ordered by creation date
     const [posts, count] = await prisma.$transaction([
       prisma.post.findMany({
         take: POST_PER_PAGE,
         skip: POST_PER_PAGE * (page - 1),
         where,
+        include: {
+          user: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
       }),
       prisma.post.count({ where }),
     ]);

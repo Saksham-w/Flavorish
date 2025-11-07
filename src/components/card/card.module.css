@@ -1,50 +1,141 @@
 .container {
-  margin-bottom: 50px;
   display: flex;
-  align-items: center;
-  gap: 50px;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--softBg);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .imageContainer {
-  flex: 1;
-  height: 350px;
+  width: 100%;
+  height: 250px;
   position: relative;
+  overflow: hidden;
+}
+
+.categoryTag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: #dc2626;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 10;
+  text-transform: capitalize;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
 }
 
 .image {
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.textContainer {
-  flex: 1;
+.container:hover .image {
+  transform: scale(1.05);
+}
+
+.content {
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 16px;
+  flex: 1;
 }
 
-.date {
-  color: gray;
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--textColor);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.category {
-  color: crimson;
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatarContainer {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar {
+  object-fit: cover;
+}
+
+.username {
+  font-size: 14px;
   font-weight: 500;
-}
-
-.desc {
-  font-size: 18px;
-  font-weight: 300;
   color: var(--softTextColor);
 }
 
-.link {
-  border-bottom: 1px solid crimson;
-  width: max-content;
-  padding: 2px 0;
+.views {
+  font-size: 14px;
+  color: var(--softTextColor);
+  font-weight: 400;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 768px) {
   .imageContainer {
-    display: none;
+    height: 200px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .content {
+    padding: 16px;
+  }
+
+  .username,
+  .views {
+    font-size: 13px;
+  }
+
+  .avatarContainer {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .imageContainer {
+    height: 180px;
+  }
+
+  .title {
+    font-size: 16px;
   }
 }
