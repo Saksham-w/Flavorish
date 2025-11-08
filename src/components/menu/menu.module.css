@@ -1,20 +1,44 @@
 .container {
-  flex: 2;
+  flex: 1;
   margin-top: 60px;
+  max-width: 360px;
+  min-width: 300px;
+}
+
+.fullWidth {
+  max-width: 100%;
+  width: 100%;
+  flex: unset;
 }
 
 .subtitle {
-  color: gray;
-  font-size: 16px;
-  font-weight: 400;
-}
-.title {
-  font-size: 28px;
+  color: var(--softTextColor);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-@media screen and (max-width: 1024px) {
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--textColor);
+  margin-bottom: 4px;
+  margin-top: 6px;
+}
+
+.title:not(:first-of-type) {
+  margin-top: 6px;
+}
+
+@media screen and (max-width: 1280px) {
   .container {
-    display: none;
+    max-width: 320px;
+    min-width: 280px;
+  }
+
+  .title {
+    font-size: 22px;
   }
 }
 

@@ -12,8 +12,8 @@ export default function Card({ item }) {
 
   return (
     <Link href={`/posts/${item.slug}`} className={styles.container}>
-      {/* Image at the top */}
-      {item.img && (
+      {/* Image or placeholder at the top */}
+      {item.img ? (
         <div className={styles.imageContainer}>
           {/* Category tag overlay */}
           {item.catSlug && (
@@ -28,12 +28,23 @@ export default function Card({ item }) {
             className={styles.image}
           />
         </div>
+      ) : (
+        <div className={styles.placeholderContainer}>
+          {/* Category tag overlay */}
+          {item.catSlug && (
+            <div className={styles.categoryTag}>
+              {capitalizeCategory(item.catSlug)}
+            </div>
+          )}
+          {/* Centered title when no image */}
+          <h2 className={styles.placeholderTitle}>{item.title}</h2>
+        </div>
       )}
 
       {/* Content below image */}
       <div className={styles.content}>
-        {/* Title */}
-        <h2 className={styles.title}>{item.title}</h2>
+        {/* Title (only if image exists, otherwise shown in placeholder) */}
+        {item.img && <h2 className={styles.title}>{item.title}</h2>}
 
         {/* Username and Views row */}
         <div className={styles.footer}>

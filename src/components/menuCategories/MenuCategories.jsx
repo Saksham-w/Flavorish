@@ -2,28 +2,47 @@ import Link from "next/link";
 import React from "react";
 import styles from "./menuCategories.module.css";
 
-const MenuCategories = () => {
+const MenuCategories = ({ layout = "row" }) => {
   return (
-    <div className={styles.categoryList}>
+    <div
+      className={`${styles.categoryList} ${
+        layout === "column" ? styles.categoryListColumn : styles.categoryListRow
+      }`}
+    >
       <Link
         href="/blog?cat=style"
         className={`${styles.categoryItem} ${styles.style}`}
       >
         Style
       </Link>
-      <Link href="/blog" className={`${styles.categoryItem} ${styles.fashion}`}>
+      <Link
+        href="/blog?cat=fashion"
+        className={`${styles.categoryItem} ${styles.fashion}`}
+      >
         Fashion
       </Link>
-      <Link href="/blog" className={`${styles.categoryItem} ${styles.food}`}>
+      <Link
+        href="/blog?cat=food"
+        className={`${styles.categoryItem} ${styles.food}`}
+      >
         Food
       </Link>
-      <Link href="/blog" className={`${styles.categoryItem} ${styles.travel}`}>
+      <Link
+        href="/blog?cat=travel"
+        className={`${styles.categoryItem} ${styles.travel}`}
+      >
         Travel
       </Link>
-      <Link href="/blog" className={`${styles.categoryItem} ${styles.culture}`}>
-        Culture
+      <Link
+        href="/blog?cat=general"
+        className={`${styles.categoryItem} ${styles.general}`}
+      >
+        General
       </Link>
-      <Link href="/blog" className={`${styles.categoryItem} ${styles.coding}`}>
+      <Link
+        href="/blog?cat=coding"
+        className={`${styles.categoryItem} ${styles.coding}`}
+      >
         Coding
       </Link>
     </div>

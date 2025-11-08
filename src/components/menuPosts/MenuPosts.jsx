@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./menuPosts.module.css";
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/posts?popular=true", {
+  const res = await fetch(`http://localhost:3000/api/posts?popular=true`, {
     cache: "no-store",
   });
 
@@ -16,12 +16,16 @@ const getData = async () => {
   return data.posts || [];
 };
 
-const MenuPosts = async ({ withImage }) => {
+const MenuPosts = async ({ withImage, layout = "column" }) => {
   const posts = await getData();
   const topPosts = posts.slice(0, 3); // Get top 3 posts
 
   return (
-    <div className={styles.items}>
+    <div
+      className={`${styles.items} ${
+        layout === "row" ? styles.itemsRow : styles.itemsColumn
+      }`}
+    >
       {topPosts.map((item) => (
         <Link
           href={`/posts/${item.slug}`}
@@ -69,7 +73,7 @@ const MenuPosts = async ({ withImage }) => {
                 </span>
               </div>
               <div className={styles.views}>
-                <span>{item.views || 0} views</span>
+                <span>👁 {item.views || 0}</span>
               </div>
             </div>
           </div>
