@@ -89,4 +89,11 @@ model Comment {
   Post      Post?    @relation(fields: [postSlug], references: [id])
 }
 
+model Subscriber {
+  id        String   @id @default(cuid()) @map("_id")
+  email     String   @unique
+  createdAt DateTime @default(now())
+  active    Boolean  @default(true)
+}
+
 // Optional for WebAuthn suppor

@@ -1,6 +1,7 @@
 import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/utils/auth";
+import { sendNewPostNotification } from "@/utils/newsletter";
 
 export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
@@ -67,6 +68,14 @@ export const POST = async (req) => {
         userEmail: session.user.email,
       },
     });
+
+    // Send newsletter notification to all subscribers
+    // This runs in the background and won't block the response
+    sendNewPostNotification(post).catch((error) => {
+      console.error("Failed to send newsletter:", error);
+      // Don't fail the post creation if newsletter fails
+    });
+
     return NextResponse.json(post, { status: 200 });
   } catch (error) {
     console.error("Error creating post:", error);
