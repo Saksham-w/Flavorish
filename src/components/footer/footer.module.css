@@ -124,6 +124,28 @@
   gap: 0.75rem;
 }
 
+.categoryGrid {
+  list-style: none !important;
+  list-style-type: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 0.75rem 1.5rem !important;
+}
+
+.categoryGrid li {
+  list-style: none !important;
+  list-style-type: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.categoryGrid li::before {
+  display: none !important;
+  content: none !important;
+}
+
 .link {
   color: hsl(220 9% 55%);
   font-size: 0.875rem;
@@ -280,6 +302,59 @@
 
 .legalLink:hover {
   color: hsl(183 74% 44%);
+}
+
+/* Contact Modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 1rem;
+}
+.modal {
+  background: hsl(0 0% 100%);
+  width: 100%;
+  max-width: 520px;
+  border-radius: 0.75rem;
+  border: 1px solid hsl(220 13% 91%);
+  padding: 1.5rem 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.modalHeader { display: flex; align-items: center; justify-content: space-between; }
+.modalTitle { margin:0; font-size:1.25rem; font-weight:600; color:hsl(220 13% 13%); }
+.closeButton { background: none; border:none; font-size:1.25rem; cursor:pointer; line-height:1; padding:0 0.25rem; color:hsl(220 13% 40%); }
+.closeButton:hover { color:hsl(220 13% 13%); }
+.modalForm { display:flex; flex-direction:column; gap:1rem; }
+.formRow { display:flex; flex-wrap:wrap; gap:1rem; }
+.formGroup { flex:1; display:flex; flex-direction:column; gap:0.375rem; min-width:140px; }
+.formGroup label { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; font-weight:600; color:hsl(220 9% 40%); }
+.formGroup input, .formGroup textarea { width:100%; padding:0.625rem 0.75rem; border:1px solid hsl(220 13% 85%); border-radius:0.5rem; background:hsl(0 0% 100%); color:hsl(220 13% 13%); font-size:0.875rem; resize:vertical; }
+.formGroup input:focus, .formGroup textarea:focus { outline:none; border-color:hsl(183 74% 44%); }
+.modalActions { display:flex; justify-content:flex-end; gap:0.75rem; }
+.primaryButton, .secondaryButton { padding:0.625rem 1rem; font-size:0.875rem; font-weight:500; border-radius:0.5rem; cursor:pointer; border:none; display:inline-flex; align-items:center; justify-content:center; }
+.primaryButton { background:hsl(183 74% 44%); color:#fff; }
+.primaryButton:hover:not(:disabled) { background:hsl(183 74% 38%); }
+.secondaryButton { background:hsl(220 14% 96%); color:hsl(220 13% 20%); border:1px solid hsl(220 13% 88%); }
+.secondaryButton:hover { background:hsl(220 13% 90%); }
+.primaryButton:disabled, .secondaryButton:disabled { opacity:0.6; cursor:not-allowed; }
+
+@media (prefers-color-scheme: dark) {
+  .modal { background:hsl(220 18% 12%); border-color:hsl(220 15% 25%); }
+  .modalTitle { color:hsl(220 9% 95%); }
+  .closeButton { color:hsl(220 9% 65%); }
+  .closeButton:hover { color:hsl(220 9% 85%); }
+  .formGroup label { color:hsl(220 9% 65%); }
+  .formGroup input, .formGroup textarea { background:hsl(220 18% 10%); border-color:hsl(220 15% 25%); color:hsl(220 9% 95%); }
+  .formGroup input:focus, .formGroup textarea:focus { border-color:hsl(183 74% 44%); }
+  .secondaryButton { background:hsl(220 15% 15%); color:hsl(220 9% 85%); border-color:hsl(220 15% 25%); }
+  .secondaryButton:hover { background:hsl(220 15% 22%); }
 }
 
 /* Dark Mode Support */

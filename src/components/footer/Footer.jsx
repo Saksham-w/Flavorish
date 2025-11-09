@@ -145,10 +145,21 @@ const Footer = () => {
             <h3 className={styles.sectionTitle}>Categories</h3>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/blog?cat=coding" className={styles.link}>
-                  Coding
+                <Link href="/blog?cat=style" className={styles.link}>
+                  Style
                 </Link>
               </li>
+              <li>
+                <Link href="/blog?cat=fashion" className={styles.link}>
+                  Fashion
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog?cat=food" className={styles.link}>
+                  Food
+                </Link>
+              </li>
+
               <li>
                 <Link href="/blog?cat=style" className={styles.link}>
                   Style
@@ -160,8 +171,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/blog?cat=culture" className={styles.link}>
-                  Culture
+                <Link href="/blog?cat=general" className={styles.link}>
+                  General
                 </Link>
               </li>
             </ul>
