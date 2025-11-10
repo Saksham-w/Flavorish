@@ -67,15 +67,15 @@
 }
 
 .primaryButton {
-  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  background: linear-gradient(135deg, rgb(16, 172, 157), rgb(13, 138, 126));
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
+  box-shadow: 0 8px 20px rgba(16, 172, 157, 0.3);
 }
 
 .primaryButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(20, 184, 166, 0.4);
-  background: linear-gradient(135deg, #0d9488, #0f766e);
+  box-shadow: 0 12px 28px rgba(16, 172, 157, 0.5);
+  background: linear-gradient(135deg, rgb(13, 138, 126), rgb(10, 103, 94));
 }
 
 .secondaryButton {

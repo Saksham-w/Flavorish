@@ -113,8 +113,8 @@
 
 .categoriesSubtitle {
   font-size: 16px;
-  font-weight: 400;
-  color: var(--softTextColor);
+  font-weight: 600;
+  color: rgb(16, 172, 157);
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 1px;

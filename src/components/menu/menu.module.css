@@ -12,9 +12,9 @@
 }
 
 .subtitle {
-  color: var(--softTextColor);
+  color: rgb(16, 172, 157);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }

@@ -30,8 +30,8 @@
 }
 
 .writeSection:focus-within {
-  border-color: rgba(26, 137, 23, 0.4);
-  box-shadow: 0 0 0 3px rgba(26, 137, 23, 0.1);
+  border-color: rgba(16, 172, 157, 0.4);
+  box-shadow: 0 0 0 3px rgba(16, 172, 157, 0.1);
 }
 
 .write {
@@ -62,7 +62,7 @@
 
 .button {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #1a8917 0%, #15a012 100%);
+  background: linear-gradient(135deg, rgb(16, 172, 157), rgb(20, 195, 179));
   color: white;
   font-weight: 600;
   font-size: 15px;
@@ -70,12 +70,12 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(26, 137, 23, 0.2);
+  box-shadow: 0 2px 8px rgba(16, 172, 157, 0.3);
 }
 
 .button:hover {
-  background: linear-gradient(135deg, #15a012 0%, #128f0e 100%);
-  box-shadow: 0 4px 12px rgba(26, 137, 23, 0.3);
+  background: linear-gradient(135deg, rgb(13, 138, 126), rgb(16, 172, 157));
+  box-shadow: 0 4px 12px rgba(16, 172, 157, 0.4);
   transform: translateY(-1px);
 }
 

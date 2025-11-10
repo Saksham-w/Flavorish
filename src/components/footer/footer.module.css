@@ -94,14 +94,14 @@
   width: 100px !important;
   height: 100px !important;
   border-radius: 0.75rem;
-  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.15);
+  box-shadow: 0 4px 12px rgba(16, 172, 157, 0.2);
   transition: all 0.3s ease;
   object-fit: cover;
 }
 
 .logoImage:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(20, 184, 166, 0.25);
+  box-shadow: 0 6px 20px rgba(16, 172, 157, 0.35);
 }
 
 @media (max-width: 640px) {
@@ -160,7 +160,7 @@
 }
 
 .socialIcon:hover {
-  background: hsl(183 74% 44%);
+  background: rgb(16, 172, 157);
   color: white;
   transform: translateY(-2px);
 }
@@ -201,7 +201,7 @@
 }
 
 .link:hover {
-  color: hsl(183 74% 44%);
+  color: rgb(16, 172, 157);
 }
 
 /* Newsletter Section */
@@ -247,8 +247,8 @@
 }
 
 .input:focus {
-  border-color: hsl(183 74% 44%);
-  box-shadow: 0 0 0 3px hsl(183 74% 44% / 0.1);
+  border-color: rgb(16, 172, 157);
+  box-shadow: 0 0 0 3px rgba(16, 172, 157, 0.1);
 }
 
 .input::placeholder {
@@ -261,7 +261,7 @@
 
 .button {
   padding: 0.625rem 1.25rem;
-  background: hsl(183 74% 44%);
+  background: rgb(16, 172, 157);
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -277,9 +277,9 @@
 }
 
 .button:hover:not(:disabled) {
-  background: hsl(183 74% 38%);
+  background: rgb(13, 138, 126);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px hsl(183 74% 44% / 0.3);
+  box-shadow: 0 4px 12px rgba(16, 172, 157, 0.3);
 }
 
 .button:disabled {
@@ -390,7 +390,7 @@
 }
 
 .legalLink:hover {
-  color: hsl(183 74% 44%);
+  color: rgb(16, 172, 157);
 }
 
 /* Contact Modal */
@@ -519,8 +519,8 @@
 
 .formInput:focus {
   outline: none;
-  border-color: hsl(183 74% 44%);
-  box-shadow: 0 0 0 3px hsl(183 74% 44% / 0.1);
+  border-color: rgb(16, 172, 157);
+  box-shadow: 0 0 0 3px rgba(16, 172, 157, 0.1);
 }
 
 .formInput::placeholder {
@@ -548,15 +548,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: hsl(183 74% 44%);
+  background: rgb(16, 172, 157);
   color: white;
   transition: all 0.2s ease;
 }
 
 .primaryButton:hover:not(:disabled) {
-  background: hsl(183 74% 38%);
+  background: rgb(13, 138, 126);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px hsl(183 74% 44% / 0.3);
+  box-shadow: 0 4px 12px rgba(16, 172, 157, 0.3);
 }
 
 .primaryButton:disabled {

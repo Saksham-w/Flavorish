@@ -22,10 +22,30 @@ const PopularPage = async () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Popular Posts</h1>
+      <div className={styles.header}>
+        <div className={styles.breadcrumb}>
+          <span className={styles.breadcrumbItem}>Home</span>
+          <span className={styles.breadcrumbSeparator}>/</span>
+          <span className={styles.breadcrumbCurrent}>Popular</span>
+        </div>
+        <h1 className={styles.title}>
+          <span className={styles.titleIcon}>🔥</span>
+          <span className={styles.titleMain}>Trending</span>
+          <span className={styles.titleSuffix}>Now</span>
+        </h1>
+        <p className={styles.description}>
+          Most viewed and loved articles by our community
+        </p>
+      </div>
+      
       <div className={styles.content}>
         <div className={styles.mainContent}>
-          <h2 className={styles.sectionTitle}>Most Viewed Posts</h2>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Most Viewed Posts</h2>
+            <div className={styles.sectionBadge}>
+              {posts?.length || 0} Articles
+            </div>
+          </div>
           <div className={styles.posts}>
             {posts?.slice(0, 12).map((item) => (
               <Card item={item} key={item.id} />
@@ -34,15 +54,17 @@ const PopularPage = async () => {
         </div>
 
         <div className={styles.sidebar}>
-          <h2 className={styles.subtitle}>Discover by topic</h2>
-          <h1 className={styles.sidebarTitle}>Categories</h1>
-          <MenuCategories layout="column" />
+          <div className={styles.sidebarSection}>
+            <span className={styles.subtitle}>Discover by topic</span>
+            <h3 className={styles.sidebarTitle}>Categories</h3>
+            <MenuCategories layout="column" />
+          </div>
 
-          <h2 className={styles.subtitle} style={{ marginTop: "48px" }}>
-            Latest Updates
-          </h2>
-          <h1 className={styles.sidebarTitle}>Recent Posts</h1>
-          <MenuPosts withImage={true} layout="column" showRecent={true} />
+          <div className={styles.sidebarSection}>
+            <span className={styles.subtitle}>Latest Updates</span>
+            <h3 className={styles.sidebarTitle}>Recent Posts</h3>
+            <MenuPosts withImage={true} layout="column" showRecent={true} />
+          </div>
         </div>
       </div>
     </div>

@@ -42,8 +42,8 @@
 }
 
 .select:focus {
-  border-color: #1a8917;
-  box-shadow: 0 0 0 3px rgba(26, 137, 23, 0.1);
+  border-color: rgb(16, 172, 157);
+  box-shadow: 0 0 0 3px rgba(16, 172, 157, 0.1);
 }
 
 .select option {
@@ -103,9 +103,9 @@
 }
 
 .toolbar button.isActive {
-  background-color: #1a8917;
+  background-color: rgb(16, 172, 157);
   color: white;
-  border-color: #1a8917;
+  border-color: rgb(16, 172, 157);
 }
 
 .divider {
@@ -145,7 +145,7 @@
 
 .button:hover:not(:disabled) {
   background-color: var(--softBg);
-  border-color: #1a8917;
+  border-color: rgb(16, 172, 157);
 }
 
 .button:disabled {
@@ -165,7 +165,7 @@
 }
 
 .addButton {
-  border-color: #1a8917;
+  border-color: rgb(16, 172, 157);
 }
 
 .add {
@@ -325,8 +325,23 @@
   right: 0px;
   padding: 10px 20px;
   border: none;
-  background-color: #1a8917;
+  background: linear-gradient(135deg, rgb(16, 172, 157), rgb(20, 195, 179));
   color: white;
   cursor: pointer;
   border-radius: 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(16, 172, 157, 0.3);
+}
+
+.publish:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgb(13, 138, 126), rgb(16, 172, 157));
+  box-shadow: 0 4px 12px rgba(16, 172, 157, 0.4);
+  transform: translateY(-1px);
+}
+
+.publish:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }

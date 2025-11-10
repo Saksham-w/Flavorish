@@ -36,8 +36,8 @@ const MenuPosts = async ({ layout = "column", showRecent = false }) => {
           className={styles.item}
           key={item.id}
         >
-          {/* Image at the top */}
-          {item.img && (
+          {/* Image or placeholder at the top */}
+          {item.img ? (
             <div className={styles.imageContainer}>
               {/* Category tag overlay */}
               {item.catSlug && (
@@ -52,12 +52,23 @@ const MenuPosts = async ({ layout = "column", showRecent = false }) => {
                 className={styles.image}
               />
             </div>
+          ) : (
+            <div className={styles.placeholderContainer}>
+              {/* Category tag overlay */}
+              {item.catSlug && (
+                <div className={styles.categoryTag}>
+                  {item.catSlug.charAt(0).toUpperCase() + item.catSlug.slice(1)}
+                </div>
+              )}
+              {/* Centered title when no image */}
+              <h2 className={styles.placeholderTitle}>{item.title}</h2>
+            </div>
           )}
 
           {/* Content below image */}
           <div className={styles.content}>
-            {/* Title */}
-            <h2 className={styles.title}>{item.title}</h2>
+            {/* Title (only if image exists, otherwise shown in placeholder) */}
+            {item.img && <h2 className={styles.title}>{item.title}</h2>}
 
             {/* Username and Views row */}
             <div className={styles.footer}>

@@ -14,8 +14,8 @@
 
 .container:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-  border-color: rgba(128, 128, 128, 0.2);
+  box-shadow: 0 12px 32px rgba(16, 172, 157, 0.15);
+  border-color: rgba(16, 172, 157, 0.2);
 }
 
 .imageContainer {
@@ -23,7 +23,11 @@
   height: 220px;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(
+    135deg,
+    rgb(16, 172, 157) 0%,
+    rgb(13, 138, 126) 100%
+  );
 }
 
 .placeholderContainer {
@@ -34,7 +38,11 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(
+    135deg,
+    rgb(16, 172, 157) 0%,
+    rgb(13, 138, 126) 100%
+  );
   border-bottom: 1px solid rgba(128, 128, 128, 0.1);
 }
 
@@ -57,7 +65,7 @@
   position: absolute;
   top: 12px;
   left: 12px;
-  background-color: #dc2626;
+  background-color: rgb(16, 172, 157);
   color: white;
   padding: 6px 14px;
   border-radius: 6px;
@@ -198,7 +206,7 @@
   .title {
     font-size: 15px;
   }
-  
+
   .content {
     padding: 12px;
   }

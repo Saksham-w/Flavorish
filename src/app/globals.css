@@ -3,6 +3,17 @@
   --textColor: black;
   --softBg: #f0f0f0;
   --softTextColor: #626262;
+
+  /* Theme Colors - rgb(16,172,157) and its shades */
+  --theme-primary: rgb(16, 172, 157);
+  --theme-primary-light: rgb(20, 195, 179);
+  --theme-primary-lighter: rgb(77, 213, 201);
+  --theme-primary-dark: rgb(13, 138, 126);
+  --theme-primary-darker: rgb(10, 103, 94);
+  --theme-hover: rgb(20, 195, 179);
+  --theme-shadow: rgba(16, 172, 157, 0.3);
+  --theme-bg-light: rgba(16, 172, 157, 0.08);
+  --theme-bg-medium: rgba(16, 172, 157, 0.15);
 }
 
 * {
@@ -27,6 +38,17 @@ a {
   --textColor: #ddd;
   --softBg: #1f273a;
   --softTextColor: #a6a6a6;
+
+  /* Theme Colors for Dark Mode */
+  --theme-primary: rgb(20, 195, 179);
+  --theme-primary-light: rgb(77, 213, 201);
+  --theme-primary-lighter: rgb(102, 221, 209);
+  --theme-primary-dark: rgb(16, 172, 157);
+  --theme-primary-darker: rgb(13, 138, 126);
+  --theme-hover: rgb(77, 213, 201);
+  --theme-shadow: rgba(20, 195, 179, 0.4);
+  --theme-bg-light: rgba(20, 195, 179, 0.15);
+  --theme-bg-medium: rgba(20, 195, 179, 0.25);
 }
 .light {
   --bg: white;

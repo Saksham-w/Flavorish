@@ -4,19 +4,100 @@
   padding: 0 20px;
 }
 
-.title {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
-  padding: 16px 24px;
-  text-align: center;
-  text-transform: capitalize;
-  border-radius: 12px;
-  margin-bottom: 40px;
-  font-size: 32px;
-  font-weight: 700;
-  box-shadow: 0 4px 16px rgba(240, 147, 251, 0.3);
+/* Header Section */
+.header {
+  margin-bottom: 48px;
+  padding: 40px 0 32px;
+  border-bottom: 2px solid rgba(16, 172, 157, 0.1);
+  position: relative;
 }
 
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(16, 172, 157), rgba(16, 172, 157, 0));
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.breadcrumbItem {
+  color: var(--softTextColor);
+  transition: color 0.2s ease;
+}
+
+.breadcrumbItem:hover {
+  color: rgb(16, 172, 157);
+}
+
+.breadcrumbSeparator {
+  color: var(--softTextColor);
+  opacity: 0.5;
+}
+
+.breadcrumbCurrent {
+  color: rgb(16, 172, 157);
+  font-weight: 600;
+}
+
+/* Title */
+.title {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+  color: var(--textColor);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.titleIcon {
+  font-size: 48px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.titleMain {
+  background: linear-gradient(135deg, rgb(16, 172, 157), rgb(20, 195, 179));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.titleSuffix {
+  color: var(--textColor);
+  font-weight: 700;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--softTextColor);
+  margin: 0;
+  max-width: 700px;
+}
+
+/* Content */
 .content {
   display: flex;
   gap: 40px;
@@ -28,11 +109,30 @@
   min-width: 0;
 }
 
-.sectionTitle {
-  font-size: 32px;
-  font-weight: 700;
+/* Section Header */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(16, 172, 157, 0.1);
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
   color: var(--textColor);
+}
+
+.sectionBadge {
+  padding: 6px 16px;
+  background: rgba(16, 172, 157, 0.1);
+  color: rgb(16, 172, 157);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .posts {
@@ -41,28 +141,36 @@
   gap: 24px;
 }
 
+/* Sidebar */
 .sidebar {
   flex: 1;
   position: sticky;
   top: 20px;
-  margin-top: 60px;
   max-width: 360px;
   min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.sidebarSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .subtitle {
-  color: var(--softTextColor);
+  color: rgb(16, 172, 157);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .sidebarTitle {
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 4px;
-  margin-top: 6px;
+  margin: 0;
   color: var(--textColor);
 }
 
@@ -72,8 +180,20 @@
   }
   
   .title {
-    font-size: 28px;
-    padding: 14px 20px;
+    font-size: 42px;
+  }
+
+  .titleIcon {
+    font-size: 42px;
+  }
+
+  .description {
+    font-size: 17px;
+  }
+
+  .header {
+    padding: 36px 0 28px;
+    margin-bottom: 40px;
   }
 
   .posts {
@@ -82,7 +202,10 @@
   }
 
   .sectionTitle {
-    font-size: 28px;
+    font-size: 26px;
+  }
+
+  .sectionHeader {
     margin-bottom: 28px;
   }
 
@@ -93,6 +216,7 @@
   .sidebar {
     max-width: 320px;
     min-width: 280px;
+    gap: 40px;
   }
 }
 
@@ -102,9 +226,21 @@
   }
   
   .title {
-    font-size: 24px;
-    padding: 12px 18px;
-    margin-bottom: 30px;
+    font-size: 36px;
+    gap: 12px;
+  }
+
+  .titleIcon {
+    font-size: 36px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .header {
+    padding: 32px 0 24px;
+    margin-bottom: 36px;
   }
 
   .posts {
@@ -120,8 +256,45 @@
   }
 
   .sectionTitle {
-    font-size: 26px;
+    font-size: 24px;
+  }
+
+  .sectionHeader {
     margin-bottom: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 32px;
+    gap: 10px;
+  }
+
+  .titleIcon {
+    font-size: 32px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .header {
+    padding: 28px 0 20px;
+    margin-bottom: 32px;
+  }
+
+  .breadcrumb {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .sectionTitle {
+    font-size: 22px;
+  }
+
+  .sectionBadge {
+    font-size: 12px;
+    padding: 4px 12px;
   }
 }
 
@@ -131,13 +304,30 @@
   }
   
   .title {
-    font-size: 20px;
-    padding: 10px 16px;
-    margin-bottom: 24px;
+    font-size: 28px;
+    gap: 8px;
+  }
+
+  .titleIcon {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 14px;
   }
   
   .content {
     gap: 24px;
+  }
+
+  .header {
+    padding: 24px 0 16px;
+    margin-bottom: 28px;
+  }
+
+  .breadcrumb {
+    font-size: 12px;
+    gap: 6px;
   }
 
   .posts {
@@ -146,16 +336,25 @@
   }
 
   .sectionTitle {
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  .sectionHeader {
     margin-bottom: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .sectionBadge {
+    font-size: 12px;
   }
 
   .subtitle {
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .sidebarTitle {
     font-size: 20px;
-    margin-bottom: 16px;
   }
 }
