@@ -1,0 +1,126 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  min-height: 70vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, hsl(183 74% 44%), hsl(220 13% 30%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section {
+  background: hsl(0 0% 100%);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  border: 1px solid hsl(220 13% 91%);
+}
+
+.heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: hsl(220 13% 20%);
+  margin-bottom: 1rem;
+}
+
+.text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: hsl(220 13% 30%);
+  margin-bottom: 1rem;
+}
+
+.text:last-child {
+  margin-bottom: 0;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.list li {
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: hsl(220 13% 30%);
+}
+
+.list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: hsl(183 74% 44%);
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.list li strong {
+  color: hsl(220 13% 20%);
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .text {
+    font-size: 1rem;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .section {
+    background: hsl(220 18% 12%);
+    border-color: hsl(220 15% 25%);
+  }
+
+  .heading {
+    color: hsl(220 9% 90%);
+  }
+
+  .text {
+    color: hsl(220 9% 75%);
+  }
+
+  .list li {
+    color: hsl(220 9% 75%);
+  }
+
+  .list li strong {
+    color: hsl(220 9% 90%);
+  }
+}
