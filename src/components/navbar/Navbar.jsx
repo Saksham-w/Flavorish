@@ -1,44 +1,46 @@
 import React from "react";
 import styles from "./navbar.module.css";
-import Image from "next/image";
 import Link from "next/link";
-import ThemeToggle from "../themeToggle/ThemeToggle";
-import AuthLinks from "../authLinks/AuthLinks";
-import { ContactButton } from "./NavbarClient";
+import Image from "next/image";
+import { NavbarClient } from "./NavbarClient";
 
 function Navbar() {
   return (
-    <div className={styles.container}>
-      <div className={styles.social}>
-        <Link href="/">
-          <Image
-            src="/logo.png"
-            alt="Flavorish"
-            width={70}
-            height={70}
-            style={{
-              borderRadius: "0.5rem",
-              boxShadow: "0 4px 12px rgba(20, 184, 166, 0.15)",
-              cursor: "pointer",
-            }}
-          />
+    <NavbarClient>
+      <div className={styles.container}>
+        {/* Logo */}
+        <Link href="/" className={styles.logoSection}>
+          <div className={styles.logoWrapper}>
+            <Image
+              src="/logo.png"
+              alt="Flavorish"
+              width={45}
+              height={45}
+              className={styles.logoImage}
+            />
+          </div>
+          <span className={styles.logoText}>FLAVORISH</span>
         </Link>
+
+        {/* Desktop Navigation Links */}
+        <nav className={styles.navLinks}>
+          <Link href="/" className={styles.navLink}>
+            Home
+          </Link>
+          <Link href="/about" className={styles.navLink}>
+            About
+          </Link>
+          <Link href="/blog" className={styles.navLink}>
+            Blog
+          </Link>
+          <Link href="/popular" className={styles.navLink}>
+            Popular
+          </Link>
+        </nav>
+
+        {/* Right side actions - auth, theme, contact will be added by NavbarClient */}
       </div>
-      <Link href="/" className={styles.logo}>
-        FLAVORISH
-      </Link>
-      <div className={styles.links}>
-        <ThemeToggle />
-        <ContactButton />
-        <Link href="/about" className={styles.link}>
-          About
-        </Link>
-        <Link href="/blog" className={styles.link}>
-          Blog
-        </Link>
-        <AuthLinks />
-      </div>
-    </div>
+    </NavbarClient>
   );
 }
 

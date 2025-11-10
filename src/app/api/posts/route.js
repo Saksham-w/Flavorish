@@ -8,15 +8,17 @@ export const GET = async (req) => {
   const page = parseInt(searchParams.get("page")) || 1;
   const cat = searchParams.get("cat");
   const popular = searchParams.get("popular");
-  const POST_PER_PAGE = 9;
+  const limit = parseInt(searchParams.get("limit"));
+  const POST_PER_PAGE = limit || 9;
 
   const where = cat ? { catSlug: cat } : {};
 
   try {
     // If popular flag is set, return posts ordered by views
     if (popular === "true") {
+      const popularLimit = limit || 12;
       const posts = await prisma.post.findMany({
-        take: 3,
+        take: popularLimit,
         where,
         include: {
           user: true,

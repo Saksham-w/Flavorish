@@ -3,8 +3,12 @@ import Link from "next/link";
 import React from "react";
 import styles from "./menuPosts.module.css";
 
-const getData = async () => {
-  const res = await fetch(`http://localhost:3000/api/posts?popular=true`, {
+const getData = async (showRecent = false) => {
+  const endpoint = showRecent
+    ? `http://localhost:3000/api/posts?page=1&limit=3`
+    : `http://localhost:3000/api/posts?popular=true&limit=3`;
+
+  const res = await fetch(endpoint, {
     cache: "no-store",
   });
 
@@ -16,9 +20,9 @@ const getData = async () => {
   return data.posts || [];
 };
 
-const MenuPosts = async ({ withImage, layout = "column" }) => {
-  const posts = await getData();
-  const topPosts = posts.slice(0, 3); // Get top 3 posts
+const MenuPosts = async ({ layout = "column", showRecent = false }) => {
+  const posts = await getData(showRecent);
+  const displayPosts = showRecent ? posts.slice(0, 4) : posts.slice(0, 3);
 
   return (
     <div
@@ -26,7 +30,7 @@ const MenuPosts = async ({ withImage, layout = "column" }) => {
         layout === "row" ? styles.itemsRow : styles.itemsColumn
       }`}
     >
-      {topPosts.map((item) => (
+      {displayPosts.map((item) => (
         <Link
           href={`/posts/${item.slug}`}
           className={styles.item}

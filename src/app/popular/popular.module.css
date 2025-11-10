@@ -1,0 +1,161 @@
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.title {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 16px 24px;
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(240, 147, 251, 0.3);
+}
+
+.content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.mainContent {
+  flex: 3;
+  min-width: 0;
+}
+
+.sectionTitle {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: var(--textColor);
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.sidebar {
+  flex: 1;
+  position: sticky;
+  top: 20px;
+  margin-top: 60px;
+  max-width: 360px;
+  min-width: 300px;
+}
+
+.subtitle {
+  color: var(--softTextColor);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebarTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  margin-top: 6px;
+  color: var(--textColor);
+}
+
+@media screen and (max-width: 1280px) {
+  .content {
+    gap: 30px;
+  }
+  
+  .title {
+    font-size: 28px;
+    padding: 14px 20px;
+  }
+
+  .posts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+    margin-bottom: 28px;
+  }
+
+  .sidebarTitle {
+    font-size: 22px;
+  }
+
+  .sidebar {
+    max-width: 320px;
+    min-width: 280px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+  }
+  
+  .title {
+    font-size: 24px;
+    padding: 12px 18px;
+    margin-bottom: 30px;
+  }
+
+  .posts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    display: none;
+  }
+
+  .sectionTitle {
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .title {
+    font-size: 20px;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+  }
+  
+  .content {
+    gap: 24px;
+  }
+
+  .posts {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .sidebarTitle {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+}
