@@ -1,70 +1,162 @@
 .container {
-  margin-top: 30px;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  margin-top: 0;
+  border-radius: 0;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  background:
+    linear-gradient(135deg, rgba(20, 184, 166, 0.15), rgba(168, 85, 247, 0.15)),
+    /* url("https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1974&auto=format&fit=crop") */
+      url("../../../public/p5.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(1px);
+}
+
+.overlay {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  max-width: 900px;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .title {
-  font-size: 96px;
-  font-weight: 300;
+  font-size: 64px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 40px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.post {
-  margin-top: 60px;
+.ctaButtons {
   display: flex;
-  gap: 50px;
+  gap: 20px;
+  justify-content: center;
   align-items: center;
 }
 
-.imgContainer {
-  flex: 1;
-  height: 500px;
-  position: relative;
+.primaryButton,
+.secondaryButton {
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: inline-block;
 }
 
-.image {
-  object-fit: cover;
+.primaryButton {
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
 }
 
-.textContainer {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(20, 184, 166, 0.4);
+  background: linear-gradient(135deg, #0d9488, #0f766e);
 }
 
-.postTitle {
-  font-size: 40px;
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
 }
 
-.postDesc {
-  font-size: 20px;
-  font-weight: 300;
-  color: var(--softTextColor);
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
 }
 
-.button {
-  width: max-content;
-  padding: 16px 20px;
-  background-color: var(--softTextColor);
-  border: none;
-  border-radius: 5px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media screen and (max-width: 1024px) {
-  .title {
-    font-size: 64px;
+  .container {
+    height: 100vh;
+    min-height: 500px;
   }
-  .imgContainer {
-    display: none;
+
+  .title {
+    font-size: 48px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    font-size: 16px;
+    padding: 14px 28px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .title {
-    font-size: 48px;
+  .container {
+    height: 100vh;
+    min-height: 450px;
   }
-}
-@media screen and (max-width: 1024px) {
+
   .title {
     font-size: 36px;
+    margin-bottom: 30px;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    font-size: 16px;
+    padding: 14px 28px;
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    height: 100vh;
+    min-height: 400px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    font-size: 15px;
+    padding: 12px 24px;
   }
 }
