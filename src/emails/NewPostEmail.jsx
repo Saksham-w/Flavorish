@@ -23,7 +23,7 @@ export default function NewPostEmail({
   return (
     <Html>
       <Head />
-      <Preview>New post on Sblog: {postTitle}</Preview>
+      <Preview>New post on FLAVORISH: {postTitle}</Preview>
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>New Post Alert! 📝</Heading>
@@ -49,7 +49,8 @@ export default function NewPostEmail({
           </Section>
 
           <Text style={footer}>
-            You're receiving this because you subscribed to Sblog newsletter.
+            You're receiving this because you subscribed to FLAVORISH
+            newsletter.
           </Text>
           <Text style={footer}>
             <Link

@@ -5,18 +5,22 @@
 I've implemented a complete newsletter subscription system with the following features:
 
 ### 1. **Database Schema**
+
 - Added `Subscriber` model to track newsletter subscribers
 - Fields: email (unique), createdAt, active status
 
 ### 2. **API Routes**
+
 - **POST `/api/newsletter/subscribe`** - Handle new subscriptions
 - **POST `/api/newsletter/send`** - Send newsletters to all subscribers
 
 ### 3. **Email Templates** (Using React Email)
+
 - **WelcomeEmail** - Sent when user subscribes
 - **NewPostEmail** - Sent when you publish a new post
 
 ### 4. **Footer Component**
+
 - Interactive subscription form with real-time feedback
 - Loading states and success/error messages
 - Client-side form validation
@@ -62,7 +66,7 @@ In these files, change the `from` address to your verified domain:
 - `src/utils/newsletter.js` (line 34)
 
 ```javascript
-from: "Sblog <newsletter@yourdomain.com>", // Change this
+from: "FLAVORISH <newsletter@yourdomain.com>", // Change this
 ```
 
 ---
@@ -70,6 +74,7 @@ from: "Sblog <newsletter@yourdomain.com>", // Change this
 ## 📧 How to Use
 
 ### For Users (Subscribers):
+
 1. User enters their email in the footer
 2. Clicks "Subscribe"
 3. Receives welcome email
@@ -78,17 +83,19 @@ from: "Sblog <newsletter@yourdomain.com>", // Change this
 ### For You (Admin):
 
 #### Option 1: Manual Trigger
+
 After publishing a post, call this API:
 
 ```javascript
-fetch('/api/newsletter/send', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ postSlug: 'your-post-slug' })
-})
+fetch("/api/newsletter/send", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ postSlug: "your-post-slug" }),
+});
 ```
 
 #### Option 2: Automatic (Recommended)
+
 Add this to your post creation API:
 
 ```javascript
@@ -118,6 +125,7 @@ await sendNewPostNotification(newPost);
 ## 📁 Files Created/Modified
 
 ### New Files:
+
 - `src/app/api/newsletter/subscribe/route.js` - Subscription endpoint
 - `src/app/api/newsletter/send/route.js` - Send newsletter endpoint
 - `src/emails/WelcomeEmail.jsx` - Welcome email template
@@ -125,6 +133,7 @@ await sendNewPostNotification(newPost);
 - `src/utils/newsletter.js` - Newsletter utility functions
 
 ### Modified Files:
+
 - `prisma/schema.prisma` - Added Subscriber model
 - `src/components/footer/Footer.jsx` - Added subscription form
 - `src/components/footer/Footer.module.css` - Added status message styles
@@ -187,17 +196,21 @@ curl -X POST http://localhost:3000/api/newsletter/send \
 ## 🐛 Troubleshooting
 
 **"Module not found: resend"**
+
 - Run: `npm install resend react-email @react-email/components`
 
 **"RESEND_API_KEY is not defined"**
+
 - Add the API key to your `.env` file
 
 **Emails not sending**
+
 - Check Resend dashboard for logs
 - Verify your API key is correct
 - Check console for errors
 
 **Duplicate subscriptions**
+
 - The system prevents this automatically
 - User will see "You're already subscribed!"
 

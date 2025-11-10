@@ -32,7 +32,7 @@ export async function sendNewPostNotification(post) {
       const emailPromises = batch.map(async (subscriber) => {
         try {
           await resend.emails.send({
-            from: "Sblog <onboarding@resend.dev>", // Change to your verified domain
+            from: "FLAVORISH <onboarding@resend.dev>", // Change to your verified domain
             to: subscriber.email,
             subject: `New Post: ${post.title}`,
             react: NewPostEmail({

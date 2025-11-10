@@ -49,9 +49,9 @@ export async function POST(req) {
     // Send welcome email
     try {
       await resend.emails.send({
-        from: "Sblog <onboarding@resend.dev>", // Change this to your verified domain
+        from: "FLAVORISH <onboarding@resend.dev>", // Change this to your verified domain
         to: email,
-        subject: "Welcome to Sblog Newsletter! 🎉",
+        subject: "Welcome to FLAVORISH Newsletter! 🎉",
         react: WelcomeEmail({ email }),
       });
     } catch (emailError) {
@@ -60,7 +60,9 @@ export async function POST(req) {
     }
 
     return NextResponse.json(
-      { message: "Successfully subscribed! Check your email for confirmation." },
+      {
+        message: "Successfully subscribed! Check your email for confirmation.",
+      },
       { status: 201 }
     );
   } catch (error) {

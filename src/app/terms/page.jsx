@@ -11,7 +11,7 @@ export default function TermsOfService() {
         <section className={styles.section}>
           <h2 className={styles.heading}>1. Agreement to Terms</h2>
           <p className={styles.text}>
-            By accessing and using Saksham Shrestha Blogs ("the Website"), you
+            By accessing and using Saksham Shrestha Blogs ("FLAVORISH"), you
             agree to be bound by these Terms of Service and all applicable laws
             and regulations. If you do not agree with any of these terms, you
             are prohibited from using this site.

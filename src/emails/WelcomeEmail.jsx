@@ -15,10 +15,10 @@ export default function WelcomeEmail({ email }) {
   return (
     <Html>
       <Head />
-      <Preview>Welcome to Sblog Newsletter! 🎉</Preview>
+      <Preview>Welcome to FLAVORISH Newsletter! 🎉</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Heading style={h1}>Welcome to Sblog! 🎉</Heading>
+          <Heading style={h1}>Welcome to FLAVORISH! 🎉</Heading>
           <Text style={text}>
             Hi there! Thank you for subscribing to our newsletter.
           </Text>
@@ -31,7 +31,7 @@ export default function WelcomeEmail({ email }) {
               style={button}
               href={process.env.NEXT_PUBLIC_URL || "http://localhost:3000"}
             >
-              Visit Sblog
+              Visit FLAVORISH
             </Button>
           </Section>
           <Text style={text}>

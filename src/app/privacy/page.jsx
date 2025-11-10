@@ -11,11 +11,11 @@ export default function PrivacyPolicy() {
         <section className={styles.section}>
           <h2 className={styles.heading}>Introduction</h2>
           <p className={styles.text}>
-            Welcome to Saksham Shrestha Blogs ("we," "our," or "us"). We respect
-            your privacy and are committed to protecting your personal data.
-            This privacy policy will inform you about how we look after your
-            personal data when you visit our website and tell you about your
-            privacy rights.
+            Welcome to Saksham Shrestha Blogs "FLAVORISH" ("we," "our," or
+            "us"). We respect your privacy and are committed to protecting your
+            personal data. This privacy policy will inform you about how we look
+            after your personal data when you visit our website and tell you
+            about your privacy rights.
           </p>
         </section>
 
