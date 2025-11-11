@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./cardList.module.css";
 import Pagination from "../pagination/Pagination";
 import Card from "../card/Card";
+import Link from "next/link";
 
 const getData = async (page, cat) => {
   const res = await fetch(
@@ -16,7 +17,7 @@ const getData = async (page, cat) => {
   return res.json();
 };
 
-const CardList = async ({ page, cat }) => {
+const CardList = async ({ page, cat, showViewAll = true }) => {
   const { posts, count } = await getData(page, cat);
 
   const POST_PER_PAGE = 9;
@@ -26,7 +27,17 @@ const CardList = async ({ page, cat }) => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Recent Posts</h1>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Recent Posts</h1>
+        {showViewAll && (
+          <Link href="/blog" className={styles.viewAllBtn}>
+            <span>View All</span>
+            <svg className={styles.arrow} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </Link>
+        )}
+      </div>
       <div className={styles.posts}>
         {posts?.map((item) => (
           <Card item={item} key={item.id} />

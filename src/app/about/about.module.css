@@ -23,23 +23,24 @@
 }
 
 .section {
-  background: hsl(0 0% 100%);
+  background: var(--softBg);
   padding: 2rem;
   border-radius: 0.75rem;
-  border: 1px solid hsl(220 13% 91%);
+  border: 1px solid var(--softBg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .heading {
   font-size: 1.75rem;
   font-weight: 600;
-  color: hsl(220 13% 20%);
+  color: var(--textColor);
   margin-bottom: 1rem;
 }
 
 .text {
   font-size: 1.05rem;
   line-height: 1.8;
-  color: hsl(220 13% 30%);
+  color: var(--softTextColor);
   margin-bottom: 1rem;
 }
 
@@ -61,20 +62,20 @@
   position: relative;
   font-size: 1rem;
   line-height: 1.6;
-  color: hsl(220 13% 30%);
+  color: var(--softTextColor);
 }
 
 .list li::before {
   content: "→";
   position: absolute;
   left: 0;
-  color: hsl(183 74% 44%);
+  color: var(--theme-primary);
   font-weight: 600;
   font-size: 1.2rem;
 }
 
 .list li strong {
-  color: hsl(220 13% 20%);
+  color: var(--textColor);
   font-weight: 600;
 }
 
@@ -98,29 +99,5 @@
 
   .text {
     font-size: 1rem;
-  }
-}
-
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .section {
-    background: hsl(220 18% 12%);
-    border-color: hsl(220 15% 25%);
-  }
-
-  .heading {
-    color: hsl(220 9% 90%);
-  }
-
-  .text {
-    color: hsl(220 9% 75%);
-  }
-
-  .list li {
-    color: hsl(220 9% 75%);
-  }
-
-  .list li strong {
-    color: hsl(220 9% 90%);
   }
 }

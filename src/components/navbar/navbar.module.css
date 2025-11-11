@@ -2,8 +2,8 @@
 .navbar {
   position: relative;
   z-index: 50;
-  background-color: white !important;
-  border-bottom: 1px solid hsl(24 20% 92%);
+  background-color: hsl(220 14% 98%) !important;
+  border-bottom: 1px solid hsl(220 13% 91%);
   box-shadow: 0 4px 20px rgba(16, 172, 157, 0.08);
   width: 100%;
   display: flex;
@@ -13,7 +13,7 @@
 
 :global(.dark) .navbar {
   background-color: #0f172a !important;
-  border-bottom: 1px solid hsl(20 15% 20%);
+  border-bottom: 1px solid hsl(220 15% 20%);
   box-shadow: 0 4px 20px rgba(16, 172, 157, 0.12);
 }
 
@@ -161,15 +161,17 @@
 /* Mobile Menu */
 .mobileMenu {
   display: none;
-  background: white;
-  border-top: 1px solid hsl(24 20% 92%);
-  padding: 1.5rem 1rem;
+  background: var(--softBg);
+  border-top: 1px solid rgba(16, 172, 157, 0.1);
+  padding: 2rem 1.5rem;
   animation: slideDown 0.3s ease-out;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 :global(.dark) .mobileMenu {
-  background: #0f172a;
-  border-top: 1px solid hsl(20 15% 20%);
+  background: hsl(220 18% 12%);
+  border-top: 1px solid rgba(16, 172, 157, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes slideDown {
@@ -185,59 +187,116 @@
 
 .mobileLink {
   display: block;
-  padding: 0.75rem 0;
-  color: hsl(20 14% 15%);
-  opacity: 0.8;
+  padding: 1rem;
+  color: var(--textColor);
   text-decoration: none;
   font-weight: 500;
-  transition: opacity 0.3s ease;
+  font-size: 1.0625rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: transparent;
   border: none;
-  text-align: left;
+  text-align: center;
   width: 100%;
   cursor: pointer;
   font-family: inherit;
-  font-size: 1rem;
+  border-radius: 12px;
+  position: relative;
+  letter-spacing: -0.01em;
 }
 
-:global(.dark) .mobileLink {
-  color: hsl(24 20% 95%);
+.mobileLink::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--theme-primary-light),
+    var(--theme-primary)
+  );
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
 }
 
 .mobileLink:hover {
+  color: white;
+  transform: translateY(-2px);
+}
+
+.mobileLink:hover::before {
   opacity: 1;
 }
 
+.mobileLink:active {
+  transform: translateY(0);
+}
+
 .mobileDivider {
-  height: 1px;
-  background: hsl(24 20% 88%);
-  margin: 1rem 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(16, 172, 157, 0.2) 50%,
+    transparent
+  );
+  margin: 1.25rem 0;
+  border-radius: 1px;
 }
 
 :global(.dark) .mobileDivider {
-  background: hsl(20 15% 20%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(16, 172, 157, 0.3) 50%,
+    transparent
+  );
 }
 
 .mobileContactButton {
   display: block;
   width: 100%;
-  padding: 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
   text-align: center;
   text-decoration: none;
-  transition: all 0.3s ease;
-  margin-top: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 1rem;
   cursor: pointer;
-  border: 1px solid hsl(24 20% 88%);
+  border: 2px solid var(--theme-primary);
   background: transparent;
-  color: hsl(20 14% 15%);
+  color: var(--theme-primary);
+  font-family: inherit;
+  letter-spacing: -0.01em;
+  position: relative;
+  overflow: hidden;
 }
 
-:global(.dark) .mobileContactButton {
-  border-color: hsl(20 15% 20%);
-  color: hsl(24 20% 95%);
+.mobileContactButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--theme-primary);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.mobileContactButton:hover {
+  color: white;
+  border-color: var(--theme-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--theme-shadow);
+}
+
+.mobileContactButton:hover::before {
+  transform: translateY(0);
+}
+
+.mobileContactButton:active {
+  transform: translateY(0);
 }
 
 /* Modal */

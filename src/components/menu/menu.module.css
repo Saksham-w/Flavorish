@@ -9,6 +9,7 @@
   max-width: 100%;
   width: 100%;
   flex: unset;
+  margin-top: 0;
 }
 
 .subtitle {
@@ -43,7 +44,35 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .container {
+  .container:not(.fullWidth) {
     display: none;
+  }
+
+  .fullWidth {
+    margin-top: 0;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .title {
+    font-size: 22px;
   }
 }

@@ -5,7 +5,7 @@ import Menu from "@/components/menu/Menu";
 const BlogPage = ({ searchParams }) => {
   const page = parseInt(searchParams.page) || 1;
   const { cat } = searchParams;
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -40,7 +40,7 @@ const BlogPage = ({ searchParams }) => {
         </p>
       </div>
       <div className={styles.content}>
-        <CardList page={page} cat={cat} />
+        <CardList page={page} cat={cat} showViewAll={false} />
         <Menu />
       </div>
     </div>

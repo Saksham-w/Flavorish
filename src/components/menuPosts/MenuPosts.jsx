@@ -24,6 +24,17 @@ const MenuPosts = async ({ layout = "column", showRecent = false }) => {
   const posts = await getData(showRecent);
   const displayPosts = showRecent ? posts.slice(0, 4) : posts.slice(0, 3);
 
+  // Function to get display name based on layout
+  const getDisplayName = (name) => {
+    if (!name) return "Anonymous";
+    // For column layout (sidebar), show only first name
+    if (layout === "column") {
+      return name.split(" ")[0];
+    }
+    // For row layout, show full name
+    return name;
+  };
+
   return (
     <div
       className={`${styles.items} ${
@@ -70,8 +81,8 @@ const MenuPosts = async ({ layout = "column", showRecent = false }) => {
             {/* Title (only if image exists, otherwise shown in placeholder) */}
             {item.img && <h2 className={styles.title}>{item.title}</h2>}
 
-            {/* Username and Views row */}
-            <div className={styles.footer}>
+            {/* Meta info */}
+            <div className={styles.meta}>
               <div className={styles.author}>
                 {item.user?.image && (
                   <div className={styles.avatarContainer}>
@@ -84,11 +95,23 @@ const MenuPosts = async ({ layout = "column", showRecent = false }) => {
                   </div>
                 )}
                 <span className={styles.username}>
-                  {item.user?.name || "Anonymous"}
+                  {getDisplayName(item.user?.name)}
                 </span>
               </div>
-              <div className={styles.views}>
-                <span>👁 {item.views || 0}</span>
+              <div className={styles.stats}>
+                <div className={styles.statItem}>
+                  <svg
+                    className={styles.icon}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <span>{item.views || 0}</span>
+                </div>
               </div>
             </div>
           </div>
