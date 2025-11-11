@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./CategoryList.module.css";
+import styles from "./categoryList.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -25,7 +25,10 @@ const CategoryList = async () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Explore Categories</h2>
+      <div className={styles.header}>
+        <h2 className={styles.subtitle}>Discover by topic</h2>
+        <h1 className={styles.title}>Explore Categories</h1>
+      </div>
       <div className={styles.categories}>
         {categories.map((item) => (
           <Link

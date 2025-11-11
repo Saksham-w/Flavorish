@@ -1,27 +1,27 @@
 import React from "react";
-import styles from "./topRated.module.css";
+import styles from "./popular.module.css";
 import Pagination from "../pagination/Pagination";
 import Card from "../card/Card";
 import Link from "next/link";
 
 const getData = async (page, limit = null) => {
   // For homepage: fetch only 3 posts without pagination
-  // For toprated page: fetch 9 posts with pagination
+  // For popular page: fetch 9 posts with pagination
   const endpoint = limit
-    ? `http://localhost:3000/api/posts?toprated=true&limit=${limit}`
-    : `http://localhost:3000/api/posts?page=${page}&toprated=true`;
+    ? `http://localhost:3000/api/posts?popular=true&limit=${limit}`
+    : `http://localhost:3000/api/posts?page=${page}&popular=true`;
 
   const res = await fetch(endpoint, {
     cache: "no-store",
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch top rated posts");
+    throw new Error("Failed to fetch popular posts");
   }
   return res.json();
 };
 
-const TopRated = async ({ page = 1, showViewAll = true, limit = null }) => {
+const Popular = async ({ page = 1, showViewAll = true, limit = null }) => {
   const { posts, count } = await getData(page, limit);
 
   const POST_PER_PAGE = 9;
@@ -33,11 +33,11 @@ const TopRated = async ({ page = 1, showViewAll = true, limit = null }) => {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.titleWrapper}>
-          <h2 className={styles.subtitle}>Favourites</h2>
-          <h1 className={styles.title}>Top Rated</h1>
+          <h2 className={styles.subtitle}>{"What's hot"}</h2>
+          <h1 className={styles.title}>Most Popular</h1>
         </div>
         {showViewAll && (
-          <Link href="/toprated" className={styles.viewAllBtn}>
+          <Link href="/popular" className={styles.viewAllBtn}>
             <span>View All</span>
             <svg
               className={styles.arrow}
@@ -61,4 +61,4 @@ const TopRated = async ({ page = 1, showViewAll = true, limit = null }) => {
   );
 };
 
-export default TopRated;
+export default Popular;

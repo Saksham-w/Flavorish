@@ -1,31 +1,8 @@
-import React from "react";
+import Popular from "@/components/popular/Popular";
 import styles from "./popular.module.css";
-import Card from "@/components/card/Card";
-import MenuPosts from "@/components/menuPosts/MenuPosts";
-import MenuCategories from "@/components/menuCategories/MenuCategories";
-import Pagination from "@/components/pagination/Pagination";
+import Menu from "@/components/menu/Menu";
 
-const getData = async (page) => {
-  const res = await fetch(
-    `http://localhost:3000/api/posts?page=${page}&popular=true`,
-    {
-      cache: "no-store",
-    }
-  );
-  if (!res.ok) {
-    throw new Error("Failed to fetch popular posts");
-  }
-  return res.json();
-};
-
-const PopularPage = async ({ searchParams }) => {
-  const page = parseInt(searchParams.page) || 1;
-  const { posts, count } = await getData(page);
-
-  const POST_PER_PAGE = 9;
-  const hasPrev = POST_PER_PAGE * (page - 1) > 0;
-  const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
-
+const PopularPage = ({ searchParams }) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -43,34 +20,9 @@ const PopularPage = async ({ searchParams }) => {
           Most viewed and loved articles by our community
         </p>
       </div>
-
       <div className={styles.content}>
-        <div className={styles.mainContent}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Most Viewed Posts</h2>
-            <div className={styles.sectionBadge}>{count || 0} Articles</div>
-          </div>
-          <div className={styles.posts}>
-            {posts?.map((item) => (
-              <Card item={item} key={item.id} />
-            ))}
-          </div>
-          <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} />
-        </div>
-
-        <div className={styles.sidebar}>
-          <div className={styles.sidebarSection}>
-            <span className={styles.subtitle}>Discover by topic</span>
-            <h3 className={styles.sidebarTitle}>Categories</h3>
-            <MenuCategories layout="column" />
-          </div>
-
-          <div className={styles.sidebarSection}>
-            <span className={styles.subtitle}>Latest Updates</span>
-            <h3 className={styles.sidebarTitle}>Recent Posts</h3>
-            <MenuPosts withImage={true} layout="column" showRecent={true} />
-          </div>
-        </div>
+        <Popular page={1} showViewAll={false} limit={12} />
+        <Menu showRecent={true} />
       </div>
     </div>
   );

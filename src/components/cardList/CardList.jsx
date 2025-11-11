@@ -28,12 +28,21 @@ const CardList = async ({ page, cat, showViewAll = true }) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Recent Posts</h1>
+        <div className={styles.titleWrapper}>
+          <h2 className={styles.subtitle}>Recently Added</h2>
+          <h1 className={styles.title}>Recent Posts</h1>
+        </div>
         {showViewAll && (
           <Link href="/blog" className={styles.viewAllBtn}>
             <span>View All</span>
-            <svg className={styles.arrow} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
+            <svg
+              className={styles.arrow}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </Link>
         )}

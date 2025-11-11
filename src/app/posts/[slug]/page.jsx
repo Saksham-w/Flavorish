@@ -116,7 +116,6 @@ const SinglePage = async ({ params }) => {
 
           {/* Categories section between post and comments */}
           <div className={styles.categoriesSection}>
-            <h2 className={styles.categoriesSubtitle}>Discover by topic</h2>
             <h1 className={styles.categoriesTitle}>Categories</h1>
             <MenuCategories />
           </div>

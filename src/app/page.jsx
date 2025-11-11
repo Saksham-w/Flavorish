@@ -5,6 +5,7 @@ import CategoryList from "@/components/categoryList/CategoryList";
 import CardList from "@/components/cardList/CardList";
 import Menu from "@/components/menu/Menu";
 import TopRated from "@/components/topRated/TopRated";
+import Popular from "@/components/popular/Popular";
 
 export default function Home({ searchParams }) {
   const page = parseInt(searchParams.page) || 1;
@@ -12,8 +13,12 @@ export default function Home({ searchParams }) {
     <div className={styles.container}>
       <Featured />
       <CategoryList />
-      <Menu layout="row" />
-      <TopRated layout="row" />
+      <div className={styles.content}>
+        <Popular page={1} showViewAll={true} limit={3} />
+      </div>
+      <div className={styles.content}>
+        <TopRated page={1} showViewAll={true} limit={3} />
+      </div>
       <div className={styles.content}>
         <CardList page={page} />
       </div>
