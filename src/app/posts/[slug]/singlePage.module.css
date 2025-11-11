@@ -46,6 +46,55 @@
   line-height: 1.4;
 }
 
+.ratingDisplay {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 28px;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 172, 157, 0.08),
+    rgba(20, 195, 179, 0.12)
+  );
+  border: 2px solid rgba(16, 172, 157, 0.25);
+  border-radius: 50px;
+  margin: 8px 0;
+  transition: all 0.3s ease;
+}
+
+.ratingDisplay:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 172, 157, 0.12),
+    rgba(20, 195, 179, 0.18)
+  );
+  border-color: rgba(16, 172, 157, 0.4);
+  box-shadow: 0 4px 16px rgba(16, 172, 157, 0.15);
+  transform: translateY(-2px);
+}
+
+.starsDisplay {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.starIcon {
+  filter: drop-shadow(0 2px 4px rgba(16, 172, 157, 0.2));
+  transition: transform 0.2s ease;
+}
+
+.ratingDisplay:hover .starIcon {
+  transform: scale(1.05);
+}
+
+.ratingText {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(16, 172, 157);
+  letter-spacing: 0.5px;
+}
+
 .user {
   display: flex;
   align-items: center;
@@ -228,6 +277,89 @@
   }
 
   .date {
+    font-size: 14px;
+  }
+}
+
+/* Image Gallery Section */
+.imagesGallery {
+  margin: 50px 0;
+  padding: 40px 0;
+  border-top: 2px solid var(--softBg);
+  border-bottom: 2px solid var(--softBg);
+}
+
+.galleryTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--textColor);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.galleryItem {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.galleryItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(16, 172, 157, 0.15);
+}
+
+.galleryImage {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.galleryItem:hover .galleryImage {
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .imagesGallery {
+    margin: 40px 0;
+    padding: 30px 0;
+  }
+
+  .galleryTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .galleryGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ratingDisplay {
+    padding: 12px 20px;
+    gap: 12px;
+    border-radius: 40px;
+  }
+
+  .starsDisplay {
+    gap: 3px;
+  }
+
+  .starIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ratingText {
     font-size: 14px;
   }
 }

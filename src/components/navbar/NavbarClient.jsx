@@ -149,6 +149,13 @@ export function NavbarClient({ children }) {
           >
             Popular
           </Link>
+          <Link
+            href="/toprated"
+            className={styles.mobileLink}
+            onClick={closeMobileMenu}
+          >
+            Top Rated
+          </Link>
 
           <div className={styles.mobileDivider} />
 

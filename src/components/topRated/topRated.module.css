@@ -1,0 +1,143 @@
+.container {
+  flex: 2;
+  margin-top: 60px;
+}
+
+.fullWidth {
+  width: 100%;
+  max-width: 1400px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(16, 172, 157, 0.1);
+  position: relative;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(16, 172, 157), rgba(16, 172, 157, 0));
+}
+
+.subtitle {
+  color: rgb(16, 172, 157);
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, rgb(16, 172, 157), rgb(20, 195, 179));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.viewAllButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 172, 157, 0.1),
+    rgba(20, 195, 179, 0.15)
+  );
+  border: 2px solid rgba(16, 172, 157, 0.3);
+  border-radius: 25px;
+  color: rgb(16, 172, 157);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.viewAllButton:hover {
+  background: linear-gradient(135deg, rgb(16, 172, 157), rgb(20, 195, 179));
+  color: white;
+  border-color: rgb(16, 172, 157);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 172, 157, 0.3);
+}
+
+.viewAllButton svg {
+  transition: transform 0.3s ease;
+}
+
+.viewAllButton:hover svg {
+  transform: translateX(4px);
+}
+
+@media screen and (max-width: 1024px) {
+  .fullWidth {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    margin-top: 48px;
+  }
+
+  .header {
+    margin-bottom: 28px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .viewAllButton {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    margin-top: 40px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .viewAllButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

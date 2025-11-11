@@ -9,7 +9,6 @@ const getData = async (slug) => {
   const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
     cache: "no-store",
   });
-  console.log(res);
   if (!res.ok) {
     throw new Error("Failed to fetch post");
   }
@@ -35,6 +34,38 @@ const SinglePage = async ({ params }) => {
           {data?.subtitle && (
             <h2 className={styles.subtitle}>{data.subtitle}</h2>
           )}
+
+          {/* Rating Display */}
+          {data?.rating > 0 && (
+            <div className={styles.ratingDisplay}>
+              <div className={styles.starsDisplay}>
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <svg
+                    key={star}
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill={star <= data.rating ? "rgb(16, 172, 157)" : "none"}
+                    stroke={
+                      star <= data.rating
+                        ? "rgb(16, 172, 157)"
+                        : "var(--softTextColor)"
+                    }
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={styles.starIcon}
+                  >
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                ))}
+              </div>
+              <span className={styles.ratingText}>
+                {data.rating} {data.rating === 1 ? "Star" : "Stars"}
+              </span>
+            </div>
+          )}
+
           <div className={styles.user}>
             {data?.user?.image && (
               <div className={styles.userImageContainer}>
@@ -62,6 +93,26 @@ const SinglePage = async ({ params }) => {
       <div className={styles.content}>
         <div className={styles.post}>
           <div className={styles.description}>{parse(data?.desc || "")}</div>
+
+          {/* Additional Images Gallery */}
+          {data?.images && data.images.length > 0 && (
+            <div className={styles.imagesGallery}>
+              <h3 className={styles.galleryTitle}>Image Gallery</h3>
+              <div className={styles.galleryGrid}>
+                {data.images.map((img, index) => (
+                  <div key={index} className={styles.galleryItem}>
+                    <Image
+                      src={img}
+                      alt={`Gallery image ${index + 1}`}
+                      fill
+                      className={styles.galleryImage}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Categories section between post and comments */}
           <div className={styles.categoriesSection}>

@@ -6,12 +6,16 @@ import { ThemeContext } from "@/context/ThemeContext";
 import { ThemeContextProvider } from "@/context/ThemeContext";
 import ThemeProvider from "@/providers/ThemeProvider";
 import AuthProvider from "@/providers/authProvider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Blog App",
-  description: "The best blog app!",
+  title: "FLAVORISH",
+  description: "Food Blog in Nepal",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -21,6 +25,33 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <ThemeContextProvider>
             <ThemeProvider>
+              <Toaster
+                position="top-right"
+                toastOptions={{
+                  duration: 4000,
+                  style: {
+                    background: "var(--bg)",
+                    color: "var(--textColor)",
+                    border: "1px solid rgba(16, 172, 157, 0.3)",
+                    borderRadius: "12px",
+                    padding: "16px",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                  },
+                  success: {
+                    iconTheme: {
+                      primary: "rgb(16, 172, 157)",
+                      secondary: "white",
+                    },
+                  },
+                  error: {
+                    iconTheme: {
+                      primary: "#ef4444",
+                      secondary: "white",
+                    },
+                  },
+                }}
+              />
               <Navbar />
               <div className="container">
                 <div className="wrapper">{children}</div>

@@ -13,7 +13,6 @@ export async function sendNewPostNotification(post) {
     });
 
     if (subscribers.length === 0) {
-      console.log("No subscribers to notify");
       return { success: true, message: "No subscribers" };
     }
 
@@ -57,7 +56,6 @@ export async function sendNewPostNotification(post) {
       }
     }
 
-    console.log(`Newsletter sent: ${sentCount} success, ${errorCount} errors`);
     return {
       success: true,
       sentCount,

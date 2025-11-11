@@ -3,10 +3,23 @@ import Link from "next/link";
 import React from "react";
 import styles from "./menuPosts.module.css";
 
-const getData = async (showRecent = false) => {
-  const endpoint = showRecent
-    ? `http://localhost:3000/api/posts?page=1&limit=3`
-    : `http://localhost:3000/api/posts?popular=true&limit=3`;
+const getData = async (
+  showRecent = false,
+  showPopular = false,
+  showTopRated = false
+) => {
+  let endpoint = `http://localhost:3000/api/posts?page=1&limit=3`;
+
+  if (showTopRated) {
+    endpoint = `http://localhost:3000/api/posts?toprated=true&limit=3`;
+  } else if (showPopular) {
+    endpoint = `http://localhost:3000/api/posts?popular=true&limit=3`;
+  } else if (showRecent) {
+    endpoint = `http://localhost:3000/api/posts?page=1&limit=3`;
+  } else {
+    // Default to popular
+    endpoint = `http://localhost:3000/api/posts?popular=true&limit=3`;
+  }
 
   const res = await fetch(endpoint, {
     cache: "no-store",
@@ -20,8 +33,13 @@ const getData = async (showRecent = false) => {
   return data.posts || [];
 };
 
-const MenuPosts = async ({ layout = "column", showRecent = false }) => {
-  const posts = await getData(showRecent);
+const MenuPosts = async ({
+  layout = "column",
+  showRecent = false,
+  showPopular = false,
+  showTopRated = false,
+}) => {
+  const posts = await getData(showRecent, showPopular, showTopRated);
   const displayPosts = showRecent ? posts.slice(0, 4) : posts.slice(0, 3);
 
   // Function to get display name based on layout
@@ -98,7 +116,46 @@ const MenuPosts = async ({ layout = "column", showRecent = false }) => {
                   {getDisplayName(item.user?.name)}
                 </span>
               </div>
+
+              {/* For row layout (homepage), show 5 physical stars in the middle */}
+              {layout === "row" && item.rating > 0 && (
+                <div className={styles.ratingStars}>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg
+                      key={star}
+                      className={styles.starIcon}
+                      viewBox="0 0 24 24"
+                      fill={star <= item.rating ? "rgb(16, 172, 157)" : "none"}
+                      stroke={
+                        star <= item.rating
+                          ? "rgb(16, 172, 157)"
+                          : "var(--softTextColor)"
+                      }
+                      strokeWidth="2"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                </div>
+              )}
+
               <div className={styles.stats}>
+                {/* For column layout (sidebar), show single star with number */}
+                {layout === "column" && item.rating > 0 && (
+                  <div className={styles.statItem}>
+                    <svg
+                      className={styles.icon}
+                      viewBox="0 0 24 24"
+                      fill="rgb(16, 172, 157)"
+                      stroke="rgb(16, 172, 157)"
+                      strokeWidth="2"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                    <span>{item.rating}</span>
+                  </div>
+                )}
+                {/* Always show views */}
                 <div className={styles.statItem}>
                   <svg
                     className={styles.icon}

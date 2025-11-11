@@ -20,7 +20,7 @@ function Navbar() {
             />
           </div>
           <span className={styles.logoText}>FLAVORISH</span>
-        </Link>  
+        </Link>
 
         {/* Desktop Navigation Links */}
         <nav className={styles.navLinks}>
@@ -35,6 +35,9 @@ function Navbar() {
           </Link>
           <Link href="/popular" className={styles.navLink}>
             Popular
+          </Link>
+          <Link href="/toprated" className={styles.navLink}>
+            Top Rated
           </Link>
         </nav>
 

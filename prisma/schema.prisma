@@ -71,6 +71,8 @@ model Post {
   subtitle  String?
   desc      String
   img       String?
+  images    String[]  @default([])
+  rating    Int?      @default(0)
   views     Int       @default(0)
   catSlug   String
   cat       Category  @relation(fields: [catSlug], references: [slug])

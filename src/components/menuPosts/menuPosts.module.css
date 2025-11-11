@@ -339,6 +339,24 @@
   align-items: center;
 }
 
+.ratingStars {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.starIcon {
+  width: 14px;
+  height: 14px;
+  transition: all 0.2s ease;
+  filter: drop-shadow(0 1px 2px rgba(16, 172, 157, 0.2));
+}
+
+.item:hover .starIcon {
+  transform: scale(1.1);
+}
+
 .statItem {
   display: flex;
   align-items: center;
@@ -509,6 +527,15 @@
     width: 12px;
     height: 12px;
   }
+
+  .ratingStars {
+    gap: 2px;
+  }
+
+  .starIcon {
+    width: 13px;
+    height: 13px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -556,6 +583,15 @@
   .icon {
     width: 15px;
     height: 15px;
+  }
+
+  .ratingStars {
+    gap: 2px;
+  }
+
+  .starIcon {
+    width: 13px;
+    height: 13px;
   }
 }
 

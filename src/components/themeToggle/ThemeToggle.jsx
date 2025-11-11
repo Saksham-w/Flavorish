@@ -6,14 +6,15 @@ import { ThemeContext } from "@/context/ThemeContext";
 
 function ThemeToggle() {
   const { theme, toggle } = useContext(ThemeContext);
-  console.log(theme);
 
   return (
     <div
       className={styles.container}
       onClick={toggle}
       style={
-        theme === "dark" ? { backgroundColor: "white" } : { backgroundColor: "#0f172a" }
+        theme === "dark"
+          ? { backgroundColor: "white" }
+          : { backgroundColor: "#0f172a" }
       }
     >
       <Image src="/moon.png" alt="Moon Icon" width={14} height={14} />

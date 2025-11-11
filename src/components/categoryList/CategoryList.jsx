@@ -1,41 +1,27 @@
 import React from "react";
 import styles from "./CategoryList.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
-const CategoryList = () => {
-  // Sample categories data
-  const categories = [
-    {
-      slug: "style",
-      title: "Style",
-      img: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=100&h=100&fit=crop",
-    },
-    {
-      slug: "fashion",
-      title: "Fashion",
-      img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=100&h=100&fit=crop",
-    },
-    {
-      slug: "food",
-      title: "Food",
-      img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=100&h=100&fit=crop",
-    },
-    {
-      slug: "travel",
-      title: "Travel",
-      img: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=100&h=100&fit=crop",
-    },
-    {
-      slug: "general",
-      title: "General",
-      img: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=100&h=100&fit=crop",
-    },
-    {
-      slug: "coding",
-      title: "Coding",
-      img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=100&h=100&fit=crop",
-    },
-  ];
+const getData = async () => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/categories`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch categories");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
+  }
+};
+
+const CategoryList = async () => {
+  const categories = await getData();
 
   return (
     <div className={styles.container}>
@@ -48,9 +34,23 @@ const CategoryList = () => {
             className={styles.category}
           >
             <div className={styles.iconWrapper}>
-              <img src={item.img} alt={item.title} className={styles.image} />
+              {item.img ? (
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  fill
+                  className={styles.image}
+                  sizes="48px"
+                />
+              ) : (
+                <div className={styles.placeholder}>
+                  {item.title.charAt(0).toUpperCase()}
+                </div>
+              )}
             </div>
-            <span className={styles.label}>{item.title}</span>
+            <span className={styles.label}>
+              {item.title.charAt(0).toUpperCase() + item.title.slice(1)}
+            </span>
           </Link>
         ))}
       </div>

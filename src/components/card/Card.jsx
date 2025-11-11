@@ -48,22 +48,49 @@ export default function Card({ item }) {
 
         {/* Meta info */}
         <div className={styles.meta}>
-          <div className={styles.author}>
-            {item.user?.image && (
-              <div className={styles.avatarContainer}>
-                <Image
-                  src={item.user.image}
-                  alt={item.user.name}
-                  fill
-                  className={styles.avatar}
-                />
+                        <div className={styles.author}>
+                {item.user?.image && (
+                  <div className={styles.avatarContainer}>
+                    <Image
+                      src={item.user.image}
+                      alt={item.user.name}
+                      fill
+                      className={styles.avatar}
+                    />
+                  </div>
+                )}
+                <span className={styles.username}>
+                  {item.user?.name || "Anonymous"}
+                </span>
               </div>
-            )}
-            <span className={styles.username}>{item.user?.name}</span>
-          </div>
+
+          {/* Rating stars in the middle */}
+          {item.rating > 0 && (
+            <div className={styles.ratingStars}>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <svg
+                  key={star}
+                  className={styles.starIcon}
+                  viewBox="0 0 24 24"
+                  fill={star <= item.rating ? "rgb(16, 172, 157)" : "none"}
+                  stroke={star <= item.rating ? "rgb(16, 172, 157)" : "var(--softTextColor)"}
+                  strokeWidth="2"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              ))}
+            </div>
+          )}
+
           <div className={styles.stats}>
             <div className={styles.statItem}>
-              <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg
+                className={styles.icon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
               </svg>

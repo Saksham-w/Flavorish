@@ -9,22 +9,21 @@ import Placeholder from "@tiptap/extension-placeholder";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/utils/supabase";
+import toast from "react-hot-toast";
 
 const WritePage = () => {
   const [file, setFile] = useState(null);
-  const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
-  const [media, setMedia] = useState("");
+  const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [catSlug, setCatSlug] = useState("");
+  const [rating, setRating] = useState(0);
   const [publishing, setPublishing] = useState(false);
   const [categories, setCategories] = useState([]);
   const [editorState, setEditorState] = useState(0);
 
   const { data, status } = useSession();
-
-  console.log(data, status);
 
   const router = useRouter();
 
@@ -73,57 +72,57 @@ const WritePage = () => {
     fetchCategories();
   }, []);
 
-  // Auto-upload when file is selected
-  useEffect(() => {
-    if (file) {
-      handleUpload();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [file]);
-
   if (status === "loading") {
     return <div className={styles.container}>Loading...</div>;
   }
 
-  const handleUpload = async () => {
-    if (!file) return;
+  const handleImageUpload = async (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
 
     setUploading(true);
 
     try {
-      // Upload to Supabase Storage
-      const fileName = `${Date.now()}_${file.name}`;
-      const { data, error } = await supabase.storage
-        .from("blog-files") // your bucket name
-        .upload(fileName, file);
+      const uploadPromises = files.map(async (file) => {
+        const fileName = `${Date.now()}_${file.name}`;
+        const { data, error } = await supabase.storage
+          .from("blog-files")
+          .upload(fileName, file);
 
-      if (error) {
-        console.error("Upload error:", error);
-        setUploading(false);
-        return;
-      }
+        if (error) throw error;
 
-      // Get public URL
-      const { data: publicData } = supabase.storage
-        .from("blog-files")
-        .getPublicUrl(fileName);
+        const { data: publicData } = supabase.storage
+          .from("blog-files")
+          .getPublicUrl(fileName);
 
-      setMedia(publicData.publicUrl);
+        return publicData.publicUrl;
+      });
+
+      const uploadedUrls = await Promise.all(uploadPromises);
+      setImages((prev) => [...prev, ...uploadedUrls]);
+      toast.success(
+        `${uploadedUrls.length} image${uploadedUrls.length > 1 ? "s" : ""} uploaded successfully!`
+      );
       setUploading(false);
-      setFile(null);
     } catch (error) {
       console.error("Upload error:", error);
+      toast.error("Failed to upload images. Please try again.");
       setUploading(false);
     }
   };
 
+  const removeImage = (indexToRemove) => {
+    setImages((prev) => prev.filter((_, index) => index !== indexToRemove));
+  };
+
   const handlePublish = async () => {
     if (!editor || !title || !catSlug) {
-      alert("Please add a title, category, and content");
+      toast.error("Please add a title, category, and content");
       return;
     }
 
     setPublishing(true);
+    const publishingToast = toast.loading("Publishing your post...");
 
     try {
       const content = editor.getHTML();
@@ -131,7 +130,9 @@ const WritePage = () => {
       const postData = {
         title,
         desc: content,
-        img: media,
+        img: images[0] || "", // First image as header
+        images: images,
+        rating: rating,
         slug: title.toLowerCase().replace(/\s+/g, "-"),
         catSlug: catSlug || "general",
       };
@@ -150,16 +151,28 @@ const WritePage = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to publish post");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to publish post");
       }
 
       const data = await response.json();
-      alert("Post published successfully!");
-      router.push(`/posts/${data.slug}`);
+      toast.success("Post published successfully! 🎉", {
+        id: publishingToast,
+        duration: 3000,
+      });
+
+      // Redirect after a short delay to show the success message
+      setTimeout(() => {
+        router.push(`/posts/${data.slug}`);
+      }, 1000);
     } catch (error) {
       console.error("Error publishing post:", error);
-      alert("Failed to publish post");
-    } finally {
+      toast.error(
+        error.message || "Failed to publish post. Please try again.",
+        {
+          id: publishingToast,
+        }
+      );
       setPublishing(false);
     }
   };
@@ -195,73 +208,126 @@ const WritePage = () => {
           <option value="">Choose a category...</option>
           {categories.map((cat) => (
             <option key={cat.id} value={cat.slug}>
-              {cat.title}
+              {cat.title.charAt(0).toUpperCase() + cat.title.slice(1)}
             </option>
           ))}
         </select>
       </div>
 
-      {/* Image Upload Section */}
-      <div className={styles.imageSection}>
-        <button
-          className={styles.button}
-          onClick={() => setOpen(!open)}
-          disabled={media}
-          title={
-            media
-              ? "You have already added an image"
-              : "Add an image to your post"
-          }
-        >
-          <Image src="/plus.png" alt="Add" width={16} height={16} />
-          <span className={styles.buttonText}>Add Image</span>
-        </button>
-
-        {open && !media && (
-          <div className={styles.add}>
-            <input
-              type="file"
-              id="image"
-              onChange={(e) => setFile(e.target.files[0])}
-              style={{ display: "none" }}
-            />
-            <button className={styles.addButton} disabled={uploading}>
-              <label
-                htmlFor="image"
-                style={{ cursor: uploading ? "not-allowed" : "pointer" }}
+      {/* Rating Section */}
+      <div className={styles.ratingWrapper}>
+        <label className={styles.label}>Rating</label>
+        <p className={styles.ratingDescription}>
+          Rate this post from 1 to 5 stars
+        </p>
+        <div className={styles.starsContainer}>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <button
+              key={star}
+              type="button"
+              className={styles.starButton}
+              onClick={() => setRating(star)}
+              aria-label={`Rate ${star} stars`}
+            >
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill={star <= rating ? "rgb(16, 172, 157)" : "none"}
+                stroke={
+                  star <= rating ? "rgb(16, 172, 157)" : "var(--softTextColor)"
+                }
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={styles.starIcon}
               >
-                <Image
-                  src="/image.png"
-                  alt="Insert Image"
-                  width={16}
-                  height={16}
-                />
-              </label>
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
             </button>
-
-            {/* <button className={styles.addButton}>
-              <Image
-                src="/external.png"
-                alt="Insert File"
-                width={16}
-                height={16}
-              />
-            </button>
-            <button className={styles.addButton}>
-              <Image
-                src="/video.png"
-                alt="Insert Media"
-                width={16}
-                height={16}
-              />
-            </button> */}
-          </div>
+          ))}
+        </div>
+        {rating > 0 && (
+          <p className={styles.ratingText}>
+            Selected Rating:{" "}
+            <span className={styles.ratingValue}>{rating}</span>{" "}
+            {rating === 1 ? "Star" : "Stars"}
+          </p>
         )}
+      </div>
 
-        {uploading && <p>Uploading image...</p>}
-        {media && (
-          <div className={styles.imagePreview}>
-            <Image src={media} alt="Uploaded" width={300} height={200} />
+      {/* Single Image Upload Section */}
+      <div className={styles.imagesSection}>
+        <div className={styles.uploadHeader}>
+          <h3 className={styles.uploadTitle}>Post Images</h3>
+          <p className={styles.uploadDescription}>
+            Upload images for your post. The first image will be used as the
+            header.
+          </p>
+        </div>
+
+        <input
+          type="file"
+          id="postImages"
+          multiple
+          accept="image/*"
+          onChange={handleImageUpload}
+          style={{ display: "none" }}
+          disabled={uploading}
+        />
+
+        <label
+          htmlFor="postImages"
+          className={`${styles.uploadButton} ${uploading ? styles.uploading : ""}`}
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+          <span>{uploading ? "Uploading..." : "Upload Images"}</span>
+        </label>
+
+        {images.length > 0 && (
+          <div className={styles.imagesGrid}>
+            {images.map((img, index) => (
+              <div key={index} className={styles.imageCard}>
+                {index === 0 && (
+                  <div className={styles.headerBadge}>Header</div>
+                )}
+                <Image
+                  src={img}
+                  alt={`Image ${index + 1}`}
+                  fill
+                  className={styles.uploadedImage}
+                />
+                <button
+                  onClick={() => removeImage(index)}
+                  className={styles.removeButton}
+                  type="button"
+                  title="Remove image"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+            ))}
           </div>
         )}
       </div>
