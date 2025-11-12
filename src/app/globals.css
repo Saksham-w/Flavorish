@@ -14,6 +14,9 @@
   --theme-shadow: rgba(16, 172, 157, 0.3);
   --theme-bg-light: rgba(16, 172, 157, 0.08);
   --theme-bg-medium: rgba(16, 172, 157, 0.15);
+  
+  /* Fonts */
+  --font-open-sans: 'Open Sans', sans-serif;
 }
 
 * {

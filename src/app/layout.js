@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Open_Sans } from "next/font/google";
 import Footer from "@/components/footer/Footer";
 import { ThemeContext } from "@/context/ThemeContext";
 import { ThemeContextProvider } from "@/context/ThemeContext";
@@ -9,6 +9,11 @@ import AuthProvider from "@/providers/authProvider";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
+const openSans = Open_Sans({ 
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-open-sans',
+});
 
 export const metadata = {
   title: "FLAVORISH",
@@ -21,7 +26,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className} suppressHydrationWarning>
+      <body className={`${inter.className} ${openSans.variable}`} suppressHydrationWarning>
         <AuthProvider>
           <ThemeContextProvider>
             <ThemeProvider>

@@ -144,6 +144,8 @@
   overflow: hidden;
   letter-spacing: -0.01em;
   transition: color 0.2s ease;
+  font-family: var(--font-open-sans);
+  text-transform: uppercase;
 }
 
 .container:hover .title {
@@ -214,6 +216,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   transition: color 0.2s ease;
+  font-family: var(--font-open-sans);
 }
 
 .container:hover .username {

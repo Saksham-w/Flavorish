@@ -624,6 +624,9 @@
   border-radius: 12px;
   background: var(--bg);
   transition: all 0.3s ease;
+  font-family: var(--font-open-sans);
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 .editor:focus-within {
@@ -708,6 +711,7 @@
   );
   color: var(--textColor);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--font-open-sans);
 }
 
 .input:hover {
@@ -741,6 +745,7 @@
   );
   color: var(--softTextColor);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--font-open-sans);
 }
 
 .subtitle:hover {
