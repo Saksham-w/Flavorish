@@ -4,7 +4,7 @@ import styles from "./about.module.css";
 export const metadata = {
   title: "About Us | FLAVORISH",
   description:
-    "Learn more about FLAVORISH - your destination for insightful stories, creative ideas, and expert perspectives.",
+    "Learn more about FLAVORISH - your ultimate destination for food reviews, culinary discoveries, and sharing your dining experiences with ratings.",
 };
 
 const AboutPage = () => {
@@ -16,40 +16,43 @@ const AboutPage = () => {
         <div className={styles.section}>
           <h2 className={styles.heading}>What is FLAVORISH?</h2>
           <p className={styles.text}>
-            FLAVORISH is a modern blogging platform where ideas come to life.
-            We're passionate about sharing stories that matter, perspectives
-            that inspire, and knowledge that empowers. Whether you're here to
-            learn something new, explore different viewpoints, or simply enjoy
-            quality content, FLAVORISH is your digital destination.
+            FLAVORISH is a dedicated food review platform where food lovers
+            share their culinary adventures and discoveries. Whether you're a
+            food critic, a home cook, or simply someone who loves to explore new
+            flavors, FLAVORISH is your go-to destination for authentic food
+            reviews, ratings, and delicious recommendations.
           </p>
         </div>
 
         <div className={styles.section}>
-          <h2 className={styles.heading}>What We Do</h2>
+          <h2 className={styles.heading}>What We Offer</h2>
           <p className={styles.text}>
-            We curate and create content across diverse topics that resonate
-            with modern readers:
+            FLAVORISH provides a comprehensive platform for food enthusiasts to:
           </p>
           <ul className={styles.list}>
             <li>
-              <strong>Coding & Technology</strong> - Latest tech trends,
-              tutorials, and insights
+              <strong>Share Food Reviews</strong> - Write detailed reviews of
+              restaurants, dishes, and culinary experiences
             </li>
             <li>
-              <strong>Lifestyle & Culture</strong> - Stories about life,
-              society, and human experiences
+              <strong>Rate Your Favorites</strong> - Give star ratings (1-5
+              stars) to help others discover the best food
             </li>
             <li>
-              <strong>Fashion & Style</strong> - Fashion trends, style guides,
-              and personal expression
+              <strong>Add Locations</strong> - Pin restaurant locations on maps
+              so others can easily find them
             </li>
             <li>
-              <strong>Food & Recipes</strong> - Culinary adventures and
-              delicious discoveries
+              <strong>Upload Food Photos</strong> - Showcase mouth-watering
+              images of your favorite dishes
             </li>
             <li>
-              <strong>Travel & Adventure</strong> - Exploring the world, one
-              story at a time
+              <strong>Discover New Flavors</strong> - Browse reviews from fellow
+              food lovers and find your next dining destination
+            </li>
+            <li>
+              <strong>Connect with Foodies</strong> - Join a community of people
+              who share your passion for great food
             </li>
           </ul>
         </div>
@@ -57,21 +60,40 @@ const AboutPage = () => {
         <div className={styles.section}>
           <h2 className={styles.heading}>Our Mission</h2>
           <p className={styles.text}>
-            We believe in the power of words to inform, inspire, and connect.
-            Our mission is to create a space where quality content meets curious
-            minds, where every article adds value, and where readers leave with
-            something meaningful - be it knowledge, inspiration, or simply a
-            fresh perspective.
+            We believe that great food deserves to be celebrated and shared. Our
+            mission is to create a community where food enthusiasts can
+            discover, review, and recommend amazing culinary experiences. Every
+            review, every rating, and every recommendation helps food lovers
+            make better dining decisions and supports restaurants that truly
+            excel.
           </p>
         </div>
 
         <div className={styles.section}>
-          <h2 className={styles.heading}>Stay Connected</h2>
+          <h2 className={styles.heading}>How It Works</h2>
           <p className={styles.text}>
-            Join our growing community of readers. Subscribe to our newsletter
-            to receive the latest articles directly in your inbox, and follow us
-            on social media to stay updated with our newest content and
-            behind-the-scenes insights.
+            Getting started with FLAVORISH is simple:
+          </p>
+          <ul className={styles.list}>
+            <li>Sign in with your Google account</li>
+            <li>Write a review about any food or restaurant you've tried</li>
+            <li>Add a star rating (1-5 stars) to share your experience</li>
+            <li>Upload photos to make your review more engaging</li>
+            <li>Include the location so others can visit</li>
+            <li>
+              Browse reviews from other food lovers and discover new places
+            </li>
+          </ul>
+        </div>
+
+        <div className={styles.section}>
+          <h2 className={styles.heading}>Join Our Community</h2>
+          <p className={styles.text}>
+            Whether you're a seasoned food critic or just starting your culinary
+            journey, FLAVORISH welcomes you. Share your taste, discover new
+            flavors, and help others find their next favorite meal. Together,
+            we're building a comprehensive guide to the best food experiences
+            around!
           </p>
         </div>
       </div>
