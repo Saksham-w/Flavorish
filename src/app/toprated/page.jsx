@@ -15,8 +15,8 @@ const TopRatedPage = ({ searchParams }) => {
         </div>
         <h1 className={styles.title}>
           <span className={styles.titleIcon}>⭐</span>
-          <span className={styles.titleMain}>Top Rated</span>
-          <span className={styles.titleSuffix}>Posts</span>
+          <span className={styles.titleMain}>Top</span>
+          <span className={styles.titleSuffix}>Picks</span>
         </h1>
         <p className={styles.description}>
           Highest rated articles handpicked by our community

@@ -35,8 +35,8 @@ const BlogPage = ({ searchParams }) => {
         </h1>
         <p className={styles.description}>
           {cat
-            ? `Explore our collection of ${cat} articles and insights`
-            : "Discover stories, thinking, and expertise from writers on any topic"}
+            ? `Explore our collection of ${cat} places reviews and insights`
+            : "Explore tasty stories, honest restaurant reviews, and foodie tips."}
         </p>
       </div>
       <div className={styles.content}>
