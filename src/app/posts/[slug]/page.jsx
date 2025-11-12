@@ -18,6 +18,28 @@ const getData = async (slug) => {
 const SinglePage = async ({ params }) => {
   const { slug } = await params;
   const data = await getData(slug);
+
+  // Function to extract src URL from iframe code or create embed URL from location name
+  const getMapEmbedUrl = (location) => {
+    if (!location) return null;
+
+    // If it's an iframe HTML code, extract the src URL
+    const srcMatch = location.match(/src=["']([^"']+)["']/);
+    if (srcMatch) {
+      return srcMatch[1];
+    }
+
+    // Check if it's already a Google Maps embed URL
+    if (location.includes("google.com/maps/embed")) {
+      return location;
+    }
+
+    // Otherwise, treat it as a location name and create an embed URL
+    return `https://maps.google.com/maps?q=${encodeURIComponent(location)}&z=15&output=embed`;
+  };
+
+  const mapEmbedUrl = data?.location ? getMapEmbedUrl(data.location) : null;
+
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
@@ -110,6 +132,28 @@ const SinglePage = async ({ params }) => {
                     />
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* Location Map */}
+          {data?.location && mapEmbedUrl && (
+            <div className={styles.locationSection}>
+              <h3 className={styles.locationTitle}>📍 Location</h3>
+              {/* Show location name if it's not an iframe/embed code */}
+              {!data.location.includes("<iframe") &&
+                !data.location.includes("maps/embed") && (
+                  <p className={styles.locationName}>{data.location}</p>
+                )}
+              <div className={styles.mapContainer}>
+                <iframe
+                  src={mapEmbedUrl}
+                  className={styles.mapIframe}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Location Map"
+                ></iframe>
               </div>
             </div>
           )}

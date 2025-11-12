@@ -19,6 +19,7 @@ const WritePage = () => {
   const [uploading, setUploading] = useState(false);
   const [catSlug, setCatSlug] = useState("");
   const [rating, setRating] = useState(0);
+  const [location, setLocation] = useState("");
   const [publishing, setPublishing] = useState(false);
   const [categories, setCategories] = useState([]);
   const [editorState, setEditorState] = useState(0);
@@ -142,6 +143,11 @@ const WritePage = () => {
         postData.subtitle = subtitle;
       }
 
+      // Only add location if it has a value
+      if (location && location.trim()) {
+        postData.location = location;
+      }
+
       const response = await fetch("/api/posts", {
         method: "POST",
         headers: {
@@ -253,6 +259,31 @@ const WritePage = () => {
             <span className={styles.ratingValue}>{rating}</span>{" "}
             {rating === 1 ? "Star" : "Stars"}
           </p>
+        )}
+      </div>
+
+      {/* Location Section */}
+      <div className={styles.locationWrapper}>
+        <label className={styles.label}>📍 Location (Optional)</label>
+        <p className={styles.locationDescription}>
+          Enter a location name (e.g., "Paris, France", "Eiffel Tower") or paste
+          the iframe embed code from Google Maps (Share → Embed a map)
+        </p>
+        <textarea
+          placeholder='Enter location name OR paste iframe code: <iframe src="https://www.google.com/maps/embed?pb=..." ...></iframe>'
+          className={styles.locationInput}
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          rows={4}
+        />
+        {location && (
+          <div className={styles.locationPreview}>
+            <span className={styles.locationValue}>
+              {location.includes("<iframe") || location.includes("maps/embed")
+                ? "🗺️ Map embed code added"
+                : `📍 Location: ${location.length > 50 ? location.substring(0, 50) + "..." : location}`}
+            </span>
+          </div>
         )}
       </div>
 

@@ -13,10 +13,11 @@
 
 .imageContainer {
   width: 100%;
-  height: 500px;
+  height: 700px;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .image {
@@ -184,7 +185,7 @@
     font-size: 24px;
   }
   .imageContainer {
-    height: 450px;
+    height: 500px;
   }
 }
 
@@ -200,7 +201,7 @@
     font-size: 22px;
   }
   .imageContainer {
-    height: 400px;
+    height: 550px;
   }
 }
 
@@ -213,7 +214,7 @@
     font-size: 42px;
   }
   .imageContainer {
-    height: 350px;
+    height: 500px;
   }
 }
 
@@ -242,7 +243,7 @@
   }
 
   .imageContainer {
-    height: 250px;
+    height: 350px;
   }
 
   .description p {
@@ -328,6 +329,66 @@
   transform: scale(1.05);
 }
 
+/* Location Section */
+.locationSection {
+  margin: 50px 0;
+  padding: 40px;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 172, 157, 0.03),
+    rgba(20, 195, 179, 0.05)
+  );
+  border: 2px solid rgba(16, 172, 157, 0.15);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.locationSection:hover {
+  border-color: rgba(16, 172, 157, 0.3);
+  box-shadow: 0 8px 24px rgba(16, 172, 157, 0.08);
+}
+
+.locationTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--textColor);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.locationName {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(16, 172, 157);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mapContainer {
+  width: 100%;
+  height: 450px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(16, 172, 157, 0.2);
+  transition: all 0.3s ease;
+}
+
+.mapContainer:hover {
+  box-shadow: 0 8px 24px rgba(16, 172, 157, 0.15);
+  border-color: rgba(16, 172, 157, 0.4);
+}
+
+.mapIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 @media screen and (max-width: 768px) {
   .imagesGallery {
     margin: 40px 0;
@@ -361,5 +422,24 @@
 
   .ratingText {
     font-size: 14px;
+  }
+
+  .locationSection {
+    margin: 40px 0;
+    padding: 24px;
+  }
+
+  .locationTitle {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .locationName {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .mapContainer {
+    height: 300px;
   }
 }

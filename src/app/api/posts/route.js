@@ -162,7 +162,7 @@ export const POST = async (req) => {
     const body = await req.json();
     console.log("Received body:", body);
 
-    const { title, desc, img, images, rating, slug, catSlug, subtitle } = body;
+    const { title, desc, img, images, rating, slug, catSlug, subtitle, location } = body;
 
     const postData = {
       title,
@@ -176,6 +176,7 @@ export const POST = async (req) => {
 
     // Add optional fields only if they exist
     if (subtitle) postData.subtitle = subtitle;
+    if (location) postData.location = location;
     if (rating !== undefined && rating !== null) {
       postData.rating = parseInt(rating);
     }
