@@ -188,6 +188,10 @@ export function NavbarClient({ children }) {
             </>
           )}
 
+          <div className={styles.mobileThemeToggle}>
+            <ThemeToggleButton />
+          </div>
+
           <button
             onClick={() => {
               setIsContactModalOpen(true);

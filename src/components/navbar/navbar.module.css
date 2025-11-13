@@ -253,6 +253,43 @@
   );
 }
 
+.mobileThemeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 12px;
+  background: rgba(16, 172, 157, 0.05);
+  border: 1px solid rgba(16, 172, 157, 0.1);
+  transition: all 0.3s ease;
+}
+
+.mobileThemeToggle:hover {
+  background: rgba(16, 172, 157, 0.08);
+  border-color: rgba(16, 172, 157, 0.2);
+}
+
+.themeLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--textColor);
+  letter-spacing: -0.01em;
+}
+
+.mobileThemeToggle .iconButton {
+  margin: 0;
+  width: 44px;
+  height: 44px;
+  background: rgba(16, 172, 157, 0.1);
+  border: 1px solid rgba(16, 172, 157, 0.2);
+}
+
+.mobileThemeToggle .iconButton:hover {
+  background: rgba(16, 172, 157, 0.15);
+  border-color: rgba(16, 172, 157, 0.3);
+}
+
 .mobileContactButton {
   display: block;
   width: 100%;
