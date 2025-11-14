@@ -10,7 +10,8 @@ export const GET = async (req) => {
   const popular = searchParams.get("popular");
   const toprated = searchParams.get("toprated");
   const limit = parseInt(searchParams.get("limit"));
-  const POST_PER_PAGE = limit || 9;
+  const postsPerPage = parseInt(searchParams.get("postsPerPage"));
+  const POST_PER_PAGE = limit || postsPerPage || 9;
 
   const where = cat ? { catSlug: cat } : {};
 
@@ -18,7 +19,7 @@ export const GET = async (req) => {
     // If toprated flag is set, return posts ordered by rating
     if (toprated === "true") {
       const topratedLimit = limit || POST_PER_PAGE;
-      
+
       // Use pagination if limit is not explicitly set
       if (!limit) {
         const [posts, count] = await prisma.$transaction([
@@ -75,14 +76,17 @@ export const GET = async (req) => {
             },
           ],
         });
-        return NextResponse.json({ posts, count: posts.length }, { status: 200 });
+        return NextResponse.json(
+          { posts, count: posts.length },
+          { status: 200 }
+        );
       }
     }
 
     // If popular flag is set, return posts ordered by views
     if (popular === "true") {
       const popularLimit = limit || POST_PER_PAGE;
-      
+
       // Use pagination if limit is not explicitly set
       if (!limit) {
         const [posts, count] = await prisma.$transaction([
@@ -122,7 +126,10 @@ export const GET = async (req) => {
             },
           ],
         });
-        return NextResponse.json({ posts, count: posts.length }, { status: 200 });
+        return NextResponse.json(
+          { posts, count: posts.length },
+          { status: 200 }
+        );
       }
     }
 
@@ -162,7 +169,17 @@ export const POST = async (req) => {
     const body = await req.json();
     console.log("Received body:", body);
 
-    const { title, desc, img, images, rating, slug, catSlug, subtitle, location } = body;
+    const {
+      title,
+      desc,
+      img,
+      images,
+      rating,
+      slug,
+      catSlug,
+      subtitle,
+      location,
+    } = body;
 
     const postData = {
       title,

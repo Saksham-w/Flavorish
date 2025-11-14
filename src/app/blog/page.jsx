@@ -40,7 +40,7 @@ const BlogPage = ({ searchParams }) => {
         </p>
       </div>
       <div className={styles.content}>
-        <CardList page={page} cat={cat} showViewAll={false} />
+        <CardList page={page} cat={cat} showViewAll={false} postsPerPage={8} />
         <Menu />
       </div>
     </div>

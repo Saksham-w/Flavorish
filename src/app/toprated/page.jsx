@@ -23,7 +23,7 @@ const TopRatedPage = ({ searchParams }) => {
         </p>
       </div>
       <div className={styles.content}>
-        <TopRated page={page} showViewAll={false} />
+        <TopRated page={page} showViewAll={false} postsPerPage={8} />
         <Menu />
       </div>
     </div>

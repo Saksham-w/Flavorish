@@ -10,6 +10,25 @@
   gap: 50px;
 }
 
+.homepageSection {
+  flex: 3;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Force 3-column layout for homepage sections */
+.homepageSection :global(div[class*="posts"]) {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+}
+
+@media screen and (max-width: 1400px) {
+  .homepageSection :global(div[class*="posts"]) {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .container {
     gap: 40px;
@@ -17,6 +36,11 @@
 
   .content {
     gap: 30px;
+  }
+
+  .homepageSection :global(div[class*="posts"]) {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
   }
 }
 
@@ -28,5 +52,12 @@
   .content {
     flex-direction: column;
     gap: 20px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .homepageSection :global(div[class*="posts"]) {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
 }

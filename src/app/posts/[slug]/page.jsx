@@ -4,6 +4,7 @@ import Image from "next/image";
 import Comments from "@/components/comments/Comments";
 import parse from "html-react-parser";
 import MenuCategories from "@/components/menuCategories/MenuCategories";
+import ImageGallery from "@/components/imageGallery/ImageGallery";
 
 const getData = async (slug) => {
   const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
@@ -117,24 +118,7 @@ const SinglePage = async ({ params }) => {
           <div className={styles.description}>{parse(data?.desc || "")}</div>
 
           {/* Additional Images Gallery */}
-          {data?.images && data.images.length > 0 && (
-            <div className={styles.imagesGallery}>
-              <h3 className={styles.galleryTitle}>Image Gallery</h3>
-              <div className={styles.galleryGrid}>
-                {data.images.map((img, index) => (
-                  <div key={index} className={styles.galleryItem}>
-                    <Image
-                      src={img}
-                      alt={`Gallery image ${index + 1}`}
-                      fill
-                      className={styles.galleryImage}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          <ImageGallery images={data?.images} />
 
           {/* Location Map */}
           {data?.location && mapEmbedUrl && (

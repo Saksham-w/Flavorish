@@ -170,7 +170,7 @@ const WritePage = () => {
       // Redirect after a short delay to show the success message
       setTimeout(() => {
         router.push(`/posts/${data.slug}`);
-      }, 1000);
+      }, 500);
     } catch (error) {
       console.error("Error publishing post:", error);
       toast.error(

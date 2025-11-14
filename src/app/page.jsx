@@ -7,20 +7,27 @@ import Menu from "@/components/menu/Menu";
 import TopRated from "@/components/topRated/TopRated";
 import Popular from "@/components/popular/Popular";
 
-export default function Home({ searchParams }) {
-  const page = parseInt(searchParams.page) || 1;
+export default async function Home({ searchParams }) {
+  const params = await searchParams;
+  const page = parseInt(params.page) || 1;
   return (
     <div className={styles.container}>
       <Featured />
       <CategoryList />
       <div className={styles.content}>
-        <Popular page={1} showViewAll={true} limit={3} />
+        <div className={styles.homepageSection}>
+          <Popular page={1} showViewAll={true} limit={3} />
+        </div>
       </div>
       <div className={styles.content}>
-        <TopRated page={1} showViewAll={true} limit={3} />
+        <div className={styles.homepageSection}>
+          <TopRated page={1} showViewAll={true} limit={3} />
+        </div>
       </div>
       <div className={styles.content}>
-        <CardList page={page} />
+        <div className={styles.homepageSection}>
+          <CardList page={page} />
+        </div>
       </div>
     </div>
   );

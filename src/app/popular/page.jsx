@@ -17,7 +17,7 @@ const PopularPage = ({ searchParams }) => {
           <span className={styles.titleSuffix}>Now</span>
         </h1>
         <p className={styles.description}>
-          Most viewed and loved articles by our community
+          Top 12 most viewed and loved articles by our community
         </p>
       </div>
       <div className={styles.content}>

@@ -4,12 +4,12 @@ import Pagination from "../pagination/Pagination";
 import Card from "../card/Card";
 import Link from "next/link";
 
-const getData = async (page, limit = null) => {
+const getData = async (page, limit = null, postsPerPage = 9) => {
   // For homepage: fetch only 3 posts without pagination
   // For toprated page: fetch 9 posts with pagination
   const endpoint = limit
     ? `http://localhost:3000/api/posts?toprated=true&limit=${limit}`
-    : `http://localhost:3000/api/posts?page=${page}&toprated=true`;
+    : `http://localhost:3000/api/posts?page=${page}&toprated=true&postsPerPage=${postsPerPage}`;
 
   const res = await fetch(endpoint, {
     cache: "no-store",
@@ -21,10 +21,15 @@ const getData = async (page, limit = null) => {
   return res.json();
 };
 
-const TopRated = async ({ page = 1, showViewAll = true, limit = null }) => {
-  const { posts, count } = await getData(page, limit);
+const TopRated = async ({
+  page = 1,
+  showViewAll = true,
+  limit = null,
+  postsPerPage = 9,
+}) => {
+  const { posts, count } = await getData(page, limit, postsPerPage);
 
-  const POST_PER_PAGE = 9;
+  const POST_PER_PAGE = postsPerPage;
 
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;

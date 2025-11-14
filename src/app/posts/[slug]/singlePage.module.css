@@ -13,15 +13,16 @@
 
 .imageContainer {
   width: 100%;
-  height: 700px;
+  height: 500px;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  background-color: var(--softBg);
 }
 
 .image {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .textContainer {
@@ -245,7 +246,7 @@
     font-size: 18px;
   }
   .imageContainer {
-    height: 600px;
+    height: 450px;
   }
 }
 
@@ -261,7 +262,7 @@
     font-size: 17px;
   }
   .imageContainer {
-    height: 550px;
+    height: 400px;
   }
   .description p {
     font-size: 17px;
@@ -280,7 +281,7 @@
     font-size: 16px;
   }
   .imageContainer {
-    height: 500px;
+    height: 350px;
   }
   .description p {
     font-size: 16px;

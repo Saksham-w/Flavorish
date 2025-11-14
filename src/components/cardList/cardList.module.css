@@ -68,16 +68,16 @@
 
 .posts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
   margin-bottom: 40px;
 }
 
-/* Large desktop - 3 columns */
+/* Large desktop - 2 columns */
 @media screen and (max-width: 1400px) {
   .posts {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 28px;
   }
 
   .header {
@@ -111,7 +111,7 @@
 
   .posts {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 24px;
   }
 
   .header {
@@ -136,7 +136,7 @@
 @media screen and (max-width: 640px) {
   .posts {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
   }
 
   .header {
