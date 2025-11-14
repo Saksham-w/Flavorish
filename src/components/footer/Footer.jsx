@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
-import styles from "./Footer.module.css";
+import styles from "./footer.module.css";
 import { NewsletterForm, HomeLink, ContactButton } from "./FooterClient";
 
 // Fetch categories server-side

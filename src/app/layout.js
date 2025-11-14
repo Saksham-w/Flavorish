@@ -5,14 +5,14 @@ import Footer from "@/components/footer/Footer";
 import { ThemeContext } from "@/context/ThemeContext";
 import { ThemeContextProvider } from "@/context/ThemeContext";
 import ThemeProvider from "@/providers/ThemeProvider";
-import AuthProvider from "@/providers/authProvider";
+import AuthProvider from "@/providers/AuthProvider";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
-const openSans = Open_Sans({ 
+const openSans = Open_Sans({
   subsets: ["latin"],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-open-sans',
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-open-sans",
 });
 
 export const metadata = {
@@ -26,7 +26,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${openSans.variable}`} suppressHydrationWarning>
+      <body
+        className={`${inter.className} ${openSans.variable}`}
+        suppressHydrationWarning
+      >
         <AuthProvider>
           <ThemeContextProvider>
             <ThemeProvider>

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Send } from "lucide-react";
-import styles from "./Footer.module.css";
+import styles from "./footer.module.css";
 
 // Newsletter Form Component
 export const NewsletterForm = () => {
