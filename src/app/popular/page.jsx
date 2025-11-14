@@ -2,6 +2,9 @@ import Popular from "@/components/popular/Popular";
 import styles from "./popular.module.css";
 import Menu from "@/components/menu/Menu";
 
+// Force dynamic rendering
+export const dynamic = "force-dynamic";
+
 const PopularPage = ({ searchParams }) => {
   return (
     <div className={styles.container}>

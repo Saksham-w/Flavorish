@@ -7,9 +7,11 @@ import Menu from "@/components/menu/Menu";
 import TopRated from "@/components/topRated/TopRated";
 import Popular from "@/components/popular/Popular";
 
-export default async function Home({ searchParams }) {
-  const params = await searchParams;
-  const page = parseInt(params.page) || 1;
+// Force dynamic rendering (don't try to static generate)
+export const dynamic = "force-dynamic";
+
+export default function Home({ searchParams }) {
+  const page = parseInt(searchParams.page) || 1;
   return (
     <div className={styles.container}>
       <Featured />

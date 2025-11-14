@@ -2,6 +2,9 @@ import TopRated from "@/components/topRated/TopRated";
 import styles from "./toprated.module.css";
 import Menu from "@/components/menu/Menu";
 
+// Force dynamic rendering
+export const dynamic = "force-dynamic";
+
 const TopRatedPage = ({ searchParams }) => {
   const page = parseInt(searchParams.page) || 1;
 

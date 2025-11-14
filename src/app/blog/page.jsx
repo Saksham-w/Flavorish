@@ -2,6 +2,9 @@ import CardList from "@/components/cardList/CardList";
 import styles from "./blogPage.module.css";
 import Menu from "@/components/menu/Menu";
 
+// Force dynamic rendering
+export const dynamic = "force-dynamic";
+
 const BlogPage = ({ searchParams }) => {
   const page = parseInt(searchParams.page) || 1;
   const { cat } = searchParams;

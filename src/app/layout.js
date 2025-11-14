@@ -8,6 +8,9 @@ import ThemeProvider from "@/providers/ThemeProvider";
 import AuthProvider from "@/providers/AuthProvider";
 import { Toaster } from "react-hot-toast";
 
+// Force dynamic rendering for all pages
+export const dynamic = "force-dynamic";
+
 const inter = Inter({ subsets: ["latin"] });
 const openSans = Open_Sans({
   subsets: ["latin"],
