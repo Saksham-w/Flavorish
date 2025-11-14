@@ -4,21 +4,17 @@ import Image from "next/image";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import styles from "./footer.module.css";
 import { NewsletterForm, HomeLink, ContactButton } from "./FooterClient";
-import { getBaseUrl } from "@/utils/api";
+import prisma from "@/utils/connect";
 
 // Fetch categories server-side
 async function getCategories() {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/categories`, {
-      cache: "no-store",
-    });
-    if (res.ok) {
-      return await res.json();
-    }
+    const categories = await prisma.category.findMany();
+    return categories;
   } catch (error) {
     console.error("Failed to fetch categories:", error);
+    return [];
   }
-  return [];
 }
 
 const Footer = async () => {

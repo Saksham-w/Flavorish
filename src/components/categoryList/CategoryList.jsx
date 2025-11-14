@@ -2,19 +2,12 @@ import React from "react";
 import styles from "./categoryList.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { getBaseUrl } from "@/utils/api";
+import prisma from "@/utils/connect";
 
 const getData = async () => {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/categories`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch categories");
-    }
-
-    return res.json();
+    const categories = await prisma.category.findMany();
+    return categories;
   } catch (error) {
     console.error("Error fetching categories:", error);
     return [];
