@@ -7,9 +7,10 @@ import Link from "next/link";
 const getData = async (page, limit = null) => {
   // For homepage: fetch only 3 posts without pagination
   // For popular page: fetch 9 posts with pagination
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const endpoint = limit
-    ? `http://localhost:3000/api/posts?popular=true&limit=${limit}`
-    : `http://localhost:3000/api/posts?page=${page}&popular=true`;
+    ? `${baseUrl}/api/posts?popular=true&limit=${limit}`
+    : `${baseUrl}/api/posts?page=${page}&popular=true`;
 
   const res = await fetch(endpoint, {
     cache: "no-store",

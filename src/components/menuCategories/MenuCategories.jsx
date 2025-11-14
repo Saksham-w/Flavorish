@@ -4,7 +4,7 @@ import styles from "./menuCategories.module.css";
 
 const getData = async () => {
   try {
-    const res = await fetch(`http://localhost:3000/api/categories`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/categories`, {
       cache: "no-store",
     });
 

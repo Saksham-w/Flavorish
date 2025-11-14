@@ -7,9 +7,10 @@ import Link from "next/link";
 const getData = async (page, limit = null, postsPerPage = 9) => {
   // For homepage: fetch only 3 posts without pagination
   // For toprated page: fetch 9 posts with pagination
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const endpoint = limit
-    ? `http://localhost:3000/api/posts?toprated=true&limit=${limit}`
-    : `http://localhost:3000/api/posts?page=${page}&toprated=true&postsPerPage=${postsPerPage}`;
+    ? `${baseUrl}/api/posts?toprated=true&limit=${limit}`
+    : `${baseUrl}/api/posts?page=${page}&toprated=true&postsPerPage=${postsPerPage}`;
 
   const res = await fetch(endpoint, {
     cache: "no-store",

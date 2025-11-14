@@ -5,9 +5,10 @@ import styles from "./menuPosts.module.css";
 
 const getData = async (showRecent = false) => {
   // Fetch posts for sidebar display - either recent or popular
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const endpoint = showRecent
-    ? `http://localhost:3000/api/posts?page=1&limit=3`
-    : `http://localhost:3000/api/posts?popular=true&limit=3`;
+    ? `${baseUrl}/api/posts?page=1&limit=3`
+    : `${baseUrl}/api/posts?popular=true&limit=3`;
 
   const res = await fetch(endpoint, {
     cache: "no-store",
