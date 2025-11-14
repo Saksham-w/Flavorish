@@ -3,11 +3,12 @@ import styles from "./popular.module.css";
 import Pagination from "../pagination/Pagination";
 import Card from "../card/Card";
 import Link from "next/link";
+import { getBaseUrl } from "@/utils/api";
 
 const getData = async (page, limit = null) => {
   // For homepage: fetch only 3 posts without pagination
   // For popular page: fetch 9 posts with pagination
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = getBaseUrl();
   const endpoint = limit
     ? `${baseUrl}/api/posts?popular=true&limit=${limit}`
     : `${baseUrl}/api/posts?page=${page}&popular=true`;

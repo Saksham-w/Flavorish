@@ -2,10 +2,11 @@ import React from "react";
 import styles from "./categoryList.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { getBaseUrl } from "@/utils/api";
 
 const getData = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/categories`, {
+    const res = await fetch(`${getBaseUrl()}/api/categories`, {
       cache: "no-store",
     });
 

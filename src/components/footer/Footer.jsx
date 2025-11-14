@@ -4,16 +4,14 @@ import Image from "next/image";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import styles from "./footer.module.css";
 import { NewsletterForm, HomeLink, ContactButton } from "./FooterClient";
+import { getBaseUrl } from "@/utils/api";
 
 // Fetch categories server-side
 async function getCategories() {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/categories`,
-      {
-        cache: "no-store",
-      }
-    );
+    const res = await fetch(`${getBaseUrl()}/api/categories`, {
+      cache: "no-store",
+    });
     if (res.ok) {
       return await res.json();
     }

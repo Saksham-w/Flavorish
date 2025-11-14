@@ -3,11 +3,12 @@ import styles from "./topRated.module.css";
 import Pagination from "../pagination/Pagination";
 import Card from "../card/Card";
 import Link from "next/link";
+import { getBaseUrl } from "@/utils/api";
 
 const getData = async (page, limit = null, postsPerPage = 9) => {
   // For homepage: fetch only 3 posts without pagination
   // For toprated page: fetch 9 posts with pagination
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = getBaseUrl();
   const endpoint = limit
     ? `${baseUrl}/api/posts?toprated=true&limit=${limit}`
     : `${baseUrl}/api/posts?page=${page}&toprated=true&postsPerPage=${postsPerPage}`;

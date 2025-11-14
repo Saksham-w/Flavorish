@@ -7,6 +7,7 @@ import usewr from "swr";
 import { useSession } from "next-auth/react";
 import useSWR from "swr";
 import { useState } from "react";
+import { getBaseUrl } from "@/utils/api";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -23,7 +24,7 @@ const Comments = ({ postSlug }) => {
   const { status } = useSession();
 
   const { data, isLoading, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/comments?postSlug=${postSlug}`,
+    `${getBaseUrl()}/api/comments?postSlug=${postSlug}`,
     fetcher
   );
 

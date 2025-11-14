@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import styles from "./menuPosts.module.css";
+import { getBaseUrl } from "@/utils/api";
 
 const getData = async (showRecent = false) => {
   // Fetch posts for sidebar display - either recent or popular
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = getBaseUrl();
   const endpoint = showRecent
     ? `${baseUrl}/api/posts?page=1&limit=3`
     : `${baseUrl}/api/posts?popular=true&limit=3`;
