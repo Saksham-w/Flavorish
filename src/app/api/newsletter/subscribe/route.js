@@ -3,8 +3,6 @@ import prisma from "@/utils/connect";
 import { Resend } from "resend";
 import WelcomeEmail from "@/emails/WelcomeEmail";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req) {
   try {
     const { email } = await req.json();
@@ -48,6 +46,9 @@ export async function POST(req) {
 
     // Send welcome email
     try {
+      // Initialize Resend only when needed (lazy initialization)
+      const resend = new Resend(process.env.RESEND_API_KEY);
+
       await resend.emails.send({
         from: "FLAVORISH <onboarding@resend.dev>", // Change this to your verified domain
         to: email,
