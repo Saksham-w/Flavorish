@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { Send } from "lucide-react";
 import styles from "./footer.module.css";
 
@@ -103,14 +104,14 @@ export const HomeLink = () => {
   };
 
   return (
-    <a
+    <Link
       href="/"
       onClick={handleHomeClick}
       className={styles.link}
       style={{ cursor: "pointer" }}
     >
       Home
-    </a>
+    </Link>
   );
 };
 
@@ -141,7 +142,7 @@ export const ContactButton = () => {
         >
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
-              <h1 className={styles.modalTitle}>Let's Connect</h1>
+              <h1 className={styles.modalTitle}>Let&apos;s Connect</h1>
               <button
                 className={styles.closeButton}
                 onClick={() => setIsContactOpen(false)}
