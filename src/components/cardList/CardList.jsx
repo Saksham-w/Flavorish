@@ -3,10 +3,12 @@ import styles from "./cardList.module.css";
 import Pagination from "../pagination/Pagination";
 import Card from "../card/Card";
 import Link from "next/link";
+import { getBaseUrl } from "@/utils/api";
 
 const getData = async (page, cat) => {
+  const baseUrl = getBaseUrl();
   const res = await fetch(
-    `http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
+    `${baseUrl}/api/posts?page=${page}&cat=${cat || ""}`,
     {
       cache: "no-store",
     }
