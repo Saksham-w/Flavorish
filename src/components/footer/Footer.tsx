@@ -4,8 +4,11 @@ import Image from "next/image";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import styles from "./footer.module.css";
 import { NewsletterForm, HomeLink, ContactButton } from "./FooterClient";
-import ContributeButton from "./ContributeButton";
+import ConditionalContribute from "./ConditionalContribute";
 import prisma from "@/utils/connect";
+
+// Force dynamic rendering to get fresh headers on every request
+export const dynamic = "force-dynamic";
 
 // Fetch categories server-side
 async function getCategories() {
@@ -26,16 +29,7 @@ const Footer = async () => {
       <footer className={styles.container}>
         <div className={styles.content}>
           {/* Contribute Section */}
-          <div className={styles.contributeSection}>
-            <h4 className={styles.contributeTitle}>
-              Got Something Tasty to Share?
-            </h4>
-            <p className={styles.contributeText}>
-              Share your food experiences, reviews, or stories with the
-              community!
-            </p>
-            <ContributeButton />
-          </div>
+          <ConditionalContribute />
           {/* Top Section - Brand & Newsletter */}
           <div className={styles.topSection}>
             <div className={styles.brandSection}>
