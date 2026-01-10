@@ -228,7 +228,7 @@ const WritePage = () => {
 
       {/* Rating Section */}
       <div className={styles.ratingWrapper}>
-        <label className={styles.label}>Rating</label>
+        <label className={styles.label}>⭐ Rating</label>
         <p className={styles.ratingDescription}>
           Rate this post from 1 to 5 stars
         </p>
@@ -270,7 +270,7 @@ const WritePage = () => {
 
       {/* Location Section */}
       <div className={styles.locationWrapper}>
-        <label className={styles.label}>📍 Location (Optional)</label>
+        <label className={styles.label}>📍 Location</label>
         <p className={styles.locationDescription}>
           Enter a location name (e.g., "Paris, France", "Eiffel Tower") or paste
           the iframe embed code from Google Maps (Share → Embed a map)
@@ -296,7 +296,7 @@ const WritePage = () => {
       {/* Single Image Upload Section */}
       <div className={styles.imagesSection}>
         <div className={styles.uploadHeader}>
-          <h3 className={styles.uploadTitle}>Post Images</h3>
+          <h3 className={styles.uploadTitle}>🖼️ Post Images</h3>
           <p className={styles.uploadDescription}>
             Upload images for your post. The first image will be used as the
             header.
