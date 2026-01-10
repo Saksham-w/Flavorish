@@ -158,7 +158,7 @@ const Footer = async () => {
           {/* Bottom Bar */}
           <div className={styles.bottom}>
             <p className={styles.copyright}>
-              © 2025 Saksham Shrestha Blogs. All rights reserved.
+              © 2026 Saksham Shrestha Blogs. All rights reserved.
             </p>
           </div>
         </div>
